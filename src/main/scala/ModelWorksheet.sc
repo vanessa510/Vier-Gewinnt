@@ -22,7 +22,11 @@ val field = new Field(6,7, false)
 field.size
 field.cells.cell(2,2)
 
+val m = new Matrix(Vector(Vector(Cell(true))))
 
+m.rows(0)(0).isSet
+
+val m2 = new Matrix(2, 2, Cell(false))
 
 
 
