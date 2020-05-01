@@ -28,5 +28,7 @@ m.rows(0)(0).isSet
 
 val m2 = new Matrix(2, 2, Cell(false))
 
+m2.rows
+
 
 
