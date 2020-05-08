@@ -1,4 +1,9 @@
-case class Cell( isSet:Boolean)
+import java.util.Optional
+
+
+case class Cell (isSet:Boolean, color:Optional[String] = Optional.empty()) {
+  def setColor():Unit = {}
+}
 
 val cell = Cell(false)
 cell.isSet
@@ -13,12 +18,12 @@ case class Matrix[Cell](rows:Vector[Vector[Cell]]) {
 
 }
 
-case class Field(cells: Matrix[Cell]) {
+case class Board(cells: Matrix[Cell]) {
   def this(sizeOfRows:Int, sizeOfCol:Int, isSet:Boolean) = this(new Matrix[Cell](sizeOfRows, sizeOfCol, Cell(isSet)))
   def size: Int = cells.size
 
 }
-val field = new Field(6,7, false)
+val field = new Board(6,7, false)
 field.size
 field.cells.cell(2,2)
 
@@ -30,5 +35,15 @@ val m2 = new Matrix(2, 2, Cell(false))
 
 m2.rows
 
+case class Player(playerName:String, color:String, var piecesLeft:Int = 21) {
 
+  def setPiece(): Player = copy(piecesLeft = piecesLeft - 1)
+}
+
+val player = Player("lisa", "rot")
+player.piecesLeft
+val updatedPlayer = player.setPiece()
+updatedPlayer.piecesLeft
+updatedPlayer.playerName
+updatedPlayer.color
 
