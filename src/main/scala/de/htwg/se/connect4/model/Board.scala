@@ -6,4 +6,10 @@ case class Board(cells: Matrix[Cell]) {
 
   def size: Int = cells.size
 
+  def cell(row:Int, col:Int): Cell = cells.cell(row, col)
+
+  def col(col:Int): Set = Set(cells.rows.map(row => row(col)))
+
+  def row(row:Int): Set = Set(cells.rows(row))
+
 }

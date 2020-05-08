@@ -6,6 +6,8 @@ case class Matrix[Cell](rows:Vector[Vector[Cell]]) {
 
   def size:Int = rows.size
 
-  def cell(row:Int, col:Int):Cell = rows(row)(col)
+  def cell(row:Int, col:Int): Cell = rows(row)(col)
+
+  def replaceCell(row:Int, col:Int, cell:Cell): Matrix[Cell] = copy(rows.updated(row, rows(row).updated(col, cell)))
 
 }
