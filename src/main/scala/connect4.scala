@@ -1,4 +1,4 @@
-import de.htwg.se.connect4.model.Player
+import de.htwg.se.connect4.model.{Board, Player}
 
 import scala.io.StdIn.readLine
 
@@ -17,6 +17,10 @@ object connect4 {
     val player2 = Player(readLine(), "yellow")
 
     println("Hello " + player1.playerName + " and " + player2.playerName + "!")
+
+    val board = new Board(6, 7, false)
+
+    print(board.getBoardAsString(6, 7))
 
 
   }

@@ -12,4 +12,13 @@ case class Board(cells: Matrix[Cell]) {
 
   def row(row:Int): Set = Set(cells.rows(row))
 
+  def getBoardAsString(rows:Int, cols: Int): String = {
+    var returnString = "\n"
+    for (row <- 0 until rows) {
+      returnString += "__|" * cols + "\n"
+    }
+
+    returnString
+  }
+
 }

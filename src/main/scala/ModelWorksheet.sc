@@ -20,11 +20,22 @@ case class Matrix[Cell](rows:Vector[Vector[Cell]]) {
 
 case class Board(cells: Matrix[Cell]) {
   def this(sizeOfRows:Int, sizeOfCol:Int, isSet:Boolean) = this(new Matrix[Cell](sizeOfRows, sizeOfCol, Cell(isSet)))
+
   def size: Int = cells.size
 
+  def getBoardAsString(rows:Int, cols: Int): String = {
+    var returnString = "\n"
+   for (row <- 0 until rows) {
+     returnString += "__|" * cols + "\n"
+   }
+
+    returnString
+  }
 }
+
 val field = new Board(6,7, false)
 field.size
+field.getBoardAsString(4,5)
 field.cells.cell(2,2)
 
 val m = new Matrix(Vector(Vector(Cell(true))))
