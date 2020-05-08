@@ -14,11 +14,17 @@ case class Board(cells: Matrix[Cell]) {
 
   def getBoardAsString(rows:Int, cols: Int): String = {
     var returnString = "\n"
-    for (row <- 0 until rows) {
-      returnString += "__|" * cols + "\n"
-    }
 
+    for {
+      row <- 0 until rows
+      col <- 0 until cols
+
+    } {
+      if (col == 0) returnString += "\n"
+      if (cell(row, col).isSet) returnString += "y |" else returnString +=  " __|"
+
+    }
+    
     returnString
   }
-
 }

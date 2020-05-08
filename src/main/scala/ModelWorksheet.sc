@@ -22,12 +22,21 @@ case class Board(cells: Matrix[Cell]) {
   def this(sizeOfRows:Int, sizeOfCol:Int, isSet:Boolean) = this(new Matrix[Cell](sizeOfRows, sizeOfCol, Cell(isSet)))
 
   def size: Int = cells.size
+  def cell(row:Int, col:Int):Cell = cells.rows(row)(col)
 
   def getBoardAsString(rows:Int, cols: Int): String = {
     var returnString = "\n"
-   for (row <- 0 until rows) {
-     returnString += "__|" * cols + "\n"
+   for {
+     row <- 0 until rows
+     col <- 0 until cols
+
+   } {
+     if (col == 0) returnString += "\n"
+     if (cell(row, col).isSet) returnString += "y |" else returnString +=  " __|"
+
    }
+
+
 
     returnString
   }
