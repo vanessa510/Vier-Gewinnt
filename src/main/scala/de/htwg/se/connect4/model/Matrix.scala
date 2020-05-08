@@ -1,4 +1,4 @@
-package model
+package de.htwg.se.connect4.model
 
 case class Matrix[Cell](rows:Vector[Vector[Cell]]) {
 
