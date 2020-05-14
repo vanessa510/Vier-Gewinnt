@@ -20,7 +20,7 @@ object connect4 {
 
     val board = new Board(6, 7, false)
 
-    print(board.getBoardAsString(6, 7))
+    print(board.getBoardAsString(board.cells))
 
 
   }
