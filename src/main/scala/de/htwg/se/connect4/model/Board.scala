@@ -32,7 +32,7 @@ case class Board(cells: Matrix[Cell]) {
         matrix.cell(row, col).color match {
           case Some("red") => returnString += " r |"
           case Some("yellow") => returnString += " y |"
-          case _ => returnString +=  " ? |"
+          case _ => returnString += " ? |"
 
         }
       } else {
