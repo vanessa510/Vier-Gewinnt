@@ -1,5 +1,49 @@
 package de.htwg.se.connect4.model
 
-class MatrixSpec {
+import org.scalatest.{Matchers, WordSpec}
+
+class MatrixSpec extends WordSpec with Matchers {
+
+  "A Matrix is part of the game board. A Matrix" when {
+
+    "is initialized" should {
+      val matrix = new Matrix[Cell](2, 3, Cell(false))
+
+      "contains empty cells" in {
+        matrix.rows(0) should be(Vector[Cell](Cell(false), Cell(false), Cell(false)))
+        matrix.cell(0, 0) should be(Cell(false))
+        matrix.cell(0, 1) should be(Cell(false))
+        matrix.cell(0, 2) should be(Cell(false))
+        matrix.cell(1, 0) should be(Cell(false))
+        matrix.cell(1, 1) should be(Cell(false))
+        matrix.cell(1, 2) should be(Cell(false))
+      }
+
+      "has 2 rows and 3 cols" in {
+        matrix.sizeOfRows should be(2)
+        matrix.sizeOfCols should be(3)
+      }
+
+    }
+
+    "containing a cell" should {
+      val matrix = new Matrix[Cell](2, 3, Cell(false))
+
+      "return a cell correctly" in {
+        matrix.cell(1, 1) should be(Cell(false))
+
+      }
+
+    }
+
+    "replaces a cell" should {
+      val matrix = new Matrix[Cell](2, 3, Cell(false))
+      val newMatrix = matrix.replaceCell(1, 1, Cell(true, Some("red")))
+
+      "and return it correctly" in {
+        newMatrix.cell(1, 1) should be(Cell(true, Some("red")))
+      }
+    }
+  }
 
 }
