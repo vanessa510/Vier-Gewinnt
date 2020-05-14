@@ -1,5 +1,9 @@
 package de.htwg.se.connect4.model
 
-class BoardSpec {
+import org.scalatest.{Matchers, WordSpec}
+
+
+class BoardSpec extends WordSpec with Matchers {
+
 
 }
