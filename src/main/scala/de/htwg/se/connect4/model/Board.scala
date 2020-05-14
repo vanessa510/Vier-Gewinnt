@@ -4,7 +4,9 @@ case class Board(cells: Matrix[Cell]) {
 
   def this(sizeOfRows:Int, sizeOfCol:Int, isSet:Boolean) = this(new Matrix[Cell](sizeOfRows, sizeOfCol, Cell(isSet)))
 
-  def size: Int = cells.sizeOfRows
+  def sizeOfRows: Int = cells.sizeOfRows
+
+  def sizeOfCols: Int = cells.rows(0).length
 
   def cell(row:Int, col:Int): Cell = cells.cell(row, col)
 
