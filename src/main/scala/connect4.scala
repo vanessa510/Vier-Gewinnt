@@ -10,29 +10,14 @@ object connect4 {
 
   def main(args: Array[String]): Unit = {
 
-    println("Welcome to connect 4. Please Enter your names.")
-
-    print("Player 1: ")
-
-    val player1 = Player(readLine(),Color.RED)
-
-    print("Player 2: ")
-
-    val player2 = Player(readLine(), Color.YELLOW)
-
-    println("Hello " + player1.playerName + " and " + player2.playerName + "!")
-
-
-
+    val players = tui.welcomePlayers()
+    var previousPlayer = 1
 
     var input: String = ""
-
-    val players = player1 :: player2 :: Nil
-    val previousPlayer = players.indexOf(player2)
-
     do {
       println("Board : " + board.getBoardAsString(board.cells))
       val currentPlayer = getNextPlayer(players, previousPlayer)
+      previousPlayer = currentPlayer
       input = readLine()
       board = tui.processInputLine(input, board, players(currentPlayer))
     } while (input != "q")
