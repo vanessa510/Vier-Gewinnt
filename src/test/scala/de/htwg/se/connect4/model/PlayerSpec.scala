@@ -6,7 +6,7 @@ class PlayerSpec extends WordSpec with Matchers {
   "A player represents a participant. A player" when {
 
     "is initialized" should {
-      val player = Player("Player1", "red")
+      val player = Player("Player1", Color.RED)
 
       "has 21 pieces at beginning" in {
         player.piecesLeft should be(21)
@@ -14,7 +14,7 @@ class PlayerSpec extends WordSpec with Matchers {
     }
 
     "has a name and it" should {
-      val player = Player("Player1", "red")
+      val player = Player("Player1", Color.RED)
 
       "be printed" in {
         player.toString
@@ -22,7 +22,7 @@ class PlayerSpec extends WordSpec with Matchers {
     }
 
     "is playing" should {
-      val player = Player("Player1", "red")
+      val player = Player("Player1", Color.RED)
 
       "set pieces and reduce amount of left pieces" in {
         val newPlayer = player.setPiece()

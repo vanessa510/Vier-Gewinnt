@@ -15,6 +15,8 @@ case class Board(cells: Matrix[Cell]) {
 
   def row(row: Int): Set = Set(cells.rows(row))
 
+  def set(row: Int, col: Int, color: Color.Value): Board = copy(cells.replaceCell(row, col, Cell(true, Some(color))))
+
   def getBoardAsString(matrix: Matrix[Cell]): String = {
     val rows = matrix.sizeOfRows
     val cols = matrix.sizeOfCols
@@ -30,8 +32,8 @@ case class Board(cells: Matrix[Cell]) {
       if (col == 0) returnString += "\n" + oneLine + "\n"
       if (matrix.cell(row, col).isSet) {
         matrix.cell(row, col).color match {
-          case Some("red") => returnString += " r |"
-          case Some("yellow") => returnString += " y |"
+          case Some(Color.RED) => returnString += " r |"
+          case Some(Color.YELLOW) => returnString += " y |"
           case _ => returnString += " ? |"
 
         }

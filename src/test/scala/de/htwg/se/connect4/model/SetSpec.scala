@@ -16,7 +16,7 @@ class SetSpec extends WordSpec with Matchers {
     }
 
     "a set with one cell set is created" should {
-      val set = Set(Vector[Cell](Cell(true, Some("red")), Cell(false)))
+      val set = Set(Vector[Cell](Cell(true, Some(Color.RED)), Cell(false)))
 
       "contain a cell with value" in {
         set.cells(0).isSet should be(true)

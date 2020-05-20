@@ -62,7 +62,7 @@ class BoardSpec extends WordSpec with Matchers {
       }
       "first piece from red player is set" should {
         val board = new Board(2, 3, false)
-        val newBoard = Board(board.cells.replaceCell(1, 1, Cell(true, Some("red"))))
+        val newBoard = Board(board.cells.replaceCell(1, 1, Cell(true, Some(Color.RED))))
         "print one cell set at second row and second col with red piece" in {
           val boardAsString = newBoard.getBoardAsString(newBoard.cells)
 
@@ -77,7 +77,7 @@ class BoardSpec extends WordSpec with Matchers {
 
       "first piece from yellow player is set" should {
         val board = new Board(2, 3, false)
-        val newBoard = Board(board.cells.replaceCell(1, 1, Cell(true, Some("yellow"))))
+        val newBoard = Board(board.cells.replaceCell(1, 1, Cell(true, Some(Color.YELLOW))))
         "print one cell set at second row and second col with yellow piece" in {
           val boardAsString = newBoard.getBoardAsString(newBoard.cells)
 
@@ -87,21 +87,6 @@ class BoardSpec extends WordSpec with Matchers {
               " - | - | - |\n" +
               " __  __  __ \n" +
               " - | y | - |")
-        }
-      }
-
-      "piece with unspecified color is set" should {
-        val board = new Board(2, 3, false)
-        val newBoard = Board(board.cells.replaceCell(1, 1, Cell(true, Some("grün"))))
-        "print one cell set at second row and second col with unspecified color" in {
-          val boardAsString = newBoard.getBoardAsString(newBoard.cells)
-
-          boardAsString should startWith(
-            "\n" +
-              " __  __  __ \n" +
-              " - | - | - |\n" +
-              " __  __  __ \n" +
-              " - | ? | - |")
         }
       }
     }

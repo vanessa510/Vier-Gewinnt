@@ -38,10 +38,10 @@ class MatrixSpec extends WordSpec with Matchers {
 
     "replaces a cell" should {
       val matrix = new Matrix[Cell](2, 3, Cell(false))
-      val newMatrix = matrix.replaceCell(1, 1, Cell(true, Some("red")))
+      val newMatrix = matrix.replaceCell(1, 1, Cell(true, Some(Color.RED)))
 
       "and return it correctly" in {
-        newMatrix.cell(1, 1) should be(Cell(true, Some("red")))
+        newMatrix.cell(1, 1) should be(Cell(true, Some(Color.RED)))
       }
     }
   }
