@@ -57,7 +57,7 @@ class TuiSpec extends WordSpec with Matchers {
 
     }
 
-    "gets random input" should {
+    "gets random integer as input" should {
       val tui = new Tui
       val board = new Board(2,3,false)
 
@@ -67,7 +67,17 @@ class TuiSpec extends WordSpec with Matchers {
         newBoard shouldEqual board
       }
 
+    }
 
+    "gets random input" should {
+      val tui = new Tui
+      val board = new Board(2,3,false)
+
+      var newBoard = tui.processInputLine("a", board, Player("test", Color.RED))
+
+      "catch exception and do nothing" in {
+        newBoard shouldEqual board
+      }
     }
   }
 

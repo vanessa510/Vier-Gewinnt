@@ -11,13 +11,20 @@ class Tui {
       case "n" => new Board(6, 7, false)
 
       case _ => {
-        input.toList.filter(c => c != ' ').map(c => c.toString.toInt) match {
-          case row :: column :: Nil =>
-            if (row <= board.sizeOfRows && column <= board.sizeOfCols) board.set(row, column, player.color)
-            else board
-          case _ => board
+        try {
+          input.toList.filter(c => c != ' ').map(c => c.toString.toInt) match {
+            case row :: column :: Nil =>
+              if (row <= board.sizeOfRows && column <= board.sizeOfCols) board.set(row, column, player.color)
+              else board
+            case _ => board
+          }
         }
+        catch {
+         case e: NumberFormatException => board
+        }
+
       }
     }
   }
+
 }
