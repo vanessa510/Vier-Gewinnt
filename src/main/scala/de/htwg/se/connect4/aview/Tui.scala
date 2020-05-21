@@ -1,30 +1,35 @@
 package de.htwg.se.connect4.aview
 
-import de.htwg.se.connect4.model.{Board, Color, Player}
 
-class Tui {
+import de.htwg.se.connect4.controller.Controller
+import de.htwg.se.connect4.model.Board
+import de.htwg.se.connect4.util.Observer
 
-  def processInputLine(input: String, board: Board, player: Player): Board = {
+class Tui(controller: Controller) extends Observer {
+
+  controller.add(this)
+  def processInputLine(input: String, board: Board): Unit = {
 
     input match {
-      case "q" => board
+      case "q" =>
       case "n" => new Board(6, 7, false)
 
       case _ => {
         try {
           input.toList.filter(c => c != ' ').map(c => c.toString.toInt) match {
             case row :: column :: Nil =>
-              if (row <= board.sizeOfRows && column <= board.sizeOfCols) board.set(row, column, player.color)
-              else board
-            case _ => board
+              if (row <= board.sizeOfRows && column <= board.sizeOfCols) controller.set(row, column)
+            case _ =>
           }
         }
         catch {
-         case e: NumberFormatException => board
+         case e: NumberFormatException =>
         }
 
       }
     }
   }
+
+  override def update: Unit = println(controller.boardToString)
 
 }
