@@ -27,7 +27,12 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
   def addPlayer(input: String): Unit = {
     if (players.isEmpty) players = players ::: Player(input, Color.RED) :: Nil
-    else  players = players ::: Player(input, Color.YELLOW) :: Nil
+    else players = players ::: Player(input, Color.YELLOW) :: Nil
+  }
+
+  def createNewBoard(rows: Int, cols: Int): Unit = {
+    board = new Board(rows, cols, false)
+    notifyObservers
   }
 
 
