@@ -12,12 +12,12 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
   def set(row: Int, col: Int): Unit = {
     board = board.set(row, col, players(currentPlayerIndex).color)
     players = players.updated(currentPlayerIndex, players(currentPlayerIndex).setPiece())
-    currentPlayerIndex = getNextPlayerIndex()
+    currentPlayerIndex = getNextPlayerIndex
     notifyObservers
 
   }
 
-  def getNextPlayerIndex(): Int = {
+  def getNextPlayerIndex: Int = {
     if (currentPlayerIndex == 0) 1
     else 0
   }
