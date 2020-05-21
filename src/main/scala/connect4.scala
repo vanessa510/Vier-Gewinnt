@@ -10,7 +10,7 @@ object connect4 {
 
   def main(args: Array[String]): Unit = {
 
-    val players = tui.welcomePlayers()
+    val players = welcomePlayers()
     var previousPlayer = 1
 
     var input: String = ""
@@ -27,4 +27,20 @@ object connect4 {
   def getNextPlayer(players: List[Player], previousPlayer: Int): Int =
     if (previousPlayer == 1) players.indexOf(players.head)
     else players.indexOf(players(1))
+
+
+  def welcomePlayers(): List[Player] = {
+    println("Welcome to connect 4. Please Enter your names.")
+
+    print("Player 1: ")
+    val player1 = Player(readLine(),Color.RED)
+
+    print("Player 2: ")
+
+    val player2 = Player(readLine(), Color.YELLOW)
+
+    println("Hello " + player1.playerName + " and " + player2.playerName + "!")
+
+    player1 :: player2 :: Nil
+  }
 }

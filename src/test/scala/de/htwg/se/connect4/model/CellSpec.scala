@@ -21,14 +21,14 @@ class CellSpec extends WordSpec with Matchers {
 
       "be red if red player set a piece" in {
         redCell.isSet should be(true)
-        redCell.color should be(Some("red"))
+        redCell.color should be(Some(Color.RED))
       }
 
       val yellowCell = Cell(true, Some(Color.YELLOW))
 
       "be initialized if yellow player set a piece" in {
         yellowCell.isSet should be(true)
-        yellowCell.color should be(Some("yellow"))
+        yellowCell.color should be(Some(Color.YELLOW))
       }
 
     }

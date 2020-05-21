@@ -21,7 +21,7 @@ class SetSpec extends WordSpec with Matchers {
       "contain a cell with value" in {
         set.cells(0).isSet should be(true)
         set.cells(1).isSet should be(false)
-        set.cells(0).color should be(Some("red"))
+        set.cells(0).color should be(Some(Color.RED))
       }
     }
   }
