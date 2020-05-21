@@ -16,10 +16,11 @@ object connect4 {
     var input: String = ""
     do {
       println("Board : " + board.getBoardAsString(board.cells))
-      val currentPlayer = getNextPlayer(players, previousPlayer)
-      previousPlayer = currentPlayer
+      val currentPlayerIndex = getNextPlayer(players, previousPlayer)
+      previousPlayer = currentPlayerIndex
       input = readLine()
-      board = tui.processInputLine(input, board, players(currentPlayer))
+      var currentPlayer = players(currentPlayerIndex)
+      board = tui.processInputLine(input, board, currentPlayer)
     } while (input != "q")
 
   }
