@@ -1,5 +1,9 @@
 package de.htwg.se.connect4.model
 
+import de.htwg.se.connect4.model.Color.Color
+
+import scala.collection.mutable.ListBuffer
+
 
 case class Board(cells: Matrix[Cell]) {
 
@@ -16,6 +20,17 @@ case class Board(cells: Matrix[Cell]) {
   def row(row: Int): Set = Set(cells.rows(row))
 
   def set(row: Int, col: Int, color: Color.Value): Board = copy(cells.replaceCell(row, col, Cell(true, Some(color))))
+
+  def checkRow(row: Int, color: Color): Boolean = {
+    var pieces = new ListBuffer[Option[Color]]()
+    for (col <- 0 until sizeOfCols) {
+      pieces += cell(row, col).color
+  }
+    var counter = 0
+    for (Some(elem) <- pieces) {if (elem.equals(color)) counter += 1 else counter = 0}
+
+    if (counter >= 4) true else false
+  }
 
   def getBoardAsString(matrix: Matrix[Cell]): String = {
     val rows = matrix.sizeOfRows

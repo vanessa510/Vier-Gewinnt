@@ -89,6 +89,63 @@ class BoardSpec extends WordSpec with Matchers {
               " - | y | - |")
         }
       }
+
+      "checks rows correctly if match found" should {
+        var board = new Board(2, 4, false)
+        board = Board(board.cells.replaceCell(0, 0, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,1, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,3, Cell(true, Some(Color.YELLOW))))
+
+        "return true" in {
+          board.checkRow(0, Color.YELLOW) shouldBe true
+
+
+        }
+      }
+
+      "check rows correctly if no match found" should {
+        var board = new Board(2, 4, false)
+        board = Board(board.cells.replaceCell(0,1, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,3, Cell(true, Some(Color.YELLOW))))
+
+        "return false" in {
+          board.checkRow(0, Color.YELLOW) shouldBe false
+        }
+
+      }
+
+      "check rows correctly" should {
+        var board = new Board(2, 4, false)
+        board = Board(board.cells.replaceCell(0,0, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,3, Cell(true, Some(Color.YELLOW))))
+
+        "return false" in {
+          board.checkRow(0, Color.YELLOW) shouldBe false
+        }
+
+      }
+
+      "check rows" should {
+        var board = new Board(2, 6, false)
+        board = Board(board.cells.replaceCell(0,0, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,3, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,4, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,5, Cell(true, Some(Color.YELLOW))))
+
+        "retrun true" in {
+          board.checkRow(0, Color.YELLOW) shouldBe true
+        }
+
+
+      }
+
+
+
+
     }
   }
 
