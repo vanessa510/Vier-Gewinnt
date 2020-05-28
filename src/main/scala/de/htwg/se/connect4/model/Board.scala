@@ -32,6 +32,18 @@ case class Board(cells: Matrix[Cell]) {
     if (counter >= 4) true else false
   }
 
+  def checkCols(col: Int, color: Color): Boolean = {
+    var pieces = new ListBuffer[Option[Color]]()
+    for (row <- 0 until sizeOfRows) {
+      pieces += cell(row, col).color
+    }
+    var counter = 0
+    for (Some(elem) <- pieces) {if (elem.equals(color)) counter += 1 else counter = 0}
+
+    if (counter >= 4) true else false
+
+  }
+
   def getBoardAsString(matrix: Matrix[Cell]): String = {
     val rows = matrix.sizeOfRows
     val cols = matrix.sizeOfCols

@@ -139,8 +139,29 @@ class BoardSpec extends WordSpec with Matchers {
         "retrun true" in {
           board.checkRow(0, Color.YELLOW) shouldBe true
         }
+      }
 
+      "check columns" should {
+        var board = new Board(4, 6, false)
+        board = Board(board.cells.replaceCell(0,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(1,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(2,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(3,2, Cell(true, Some(Color.YELLOW))))
 
+        "return true" in {
+          board.checkCols(2, Color.YELLOW) shouldBe true
+        }
+      }
+
+      "check columns" should {
+        var board = new Board(4, 6, false)
+        board = Board(board.cells.replaceCell(0,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(2,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(3,2, Cell(true, Some(Color.YELLOW))))
+
+        "return false" in {
+          board.checkCols(2, Color.YELLOW) shouldBe false
+        }
       }
 
 
