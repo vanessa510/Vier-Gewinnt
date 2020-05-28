@@ -10,17 +10,22 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
   def getWelcomeString: String = "Welcome to connect 4. Please Enter your names."
 
   def set(row: Int, col: Int): Unit = {
+    if (board.cell(row, col).isSet) {
+      notifyError("Cell is already set. Please chose different one.")
+      notifyObservers
+
+    } else {
+
     board = board.set(row, col, players(currentPlayerIndex).color)
     players = players.updated(currentPlayerIndex, players(currentPlayerIndex).setPiece())
     currentPlayerIndex = getNextPlayerIndex
     notifyObservers
 
+    }
   }
 
-  def getNextPlayerIndex: Int = {
-    if (currentPlayerIndex == 0) 1
-    else 0
-  }
+  def getNextPlayerIndex: Int = if (currentPlayerIndex == 0) 1 else 0
+
 
   def boardToString: String = board.getBoardAsString(board.cells)
 
