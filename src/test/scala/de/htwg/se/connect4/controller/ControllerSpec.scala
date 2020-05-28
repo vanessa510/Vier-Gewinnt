@@ -25,6 +25,12 @@ class ControllerSpec extends WordSpec with Matchers {
       controller.board.cell(1,2).isSet shouldBe true
     }
 
+    "prevent cetting cell when already set" in {
+      controller.set(1,2)
+
+      controller.board.cell(1,2).color shouldBe Some(Color.RED)
+    }
+
     "move to next player" in {
       val index = controller.currentPlayerIndex
 
@@ -36,6 +42,14 @@ class ControllerSpec extends WordSpec with Matchers {
       newIndex = controller.getNextPlayerIndex
 
       newIndex should equal(index)
+
+    }
+
+    "create new Board" in {
+      controller.createNewBoard(1, 1)
+
+      controller.board.sizeOfCols shouldBe 1
+      controller.board.sizeOfRows shouldBe 1
 
     }
 
