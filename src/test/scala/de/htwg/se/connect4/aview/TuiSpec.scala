@@ -38,7 +38,25 @@ class TuiSpec extends WordSpec with Matchers {
           controller.board.cell(1, 2).isSet shouldBe true
       }
 
+
     }
+
+    "gets no integer input " should  {
+      val board = new Board(2, 3, false)
+      val players: List[Player] = Player("test", Color.RED) :: Nil
+      val controller = new Controller(board, players)
+      val tui = new Tui(controller)
+
+      tui.processInputLine("a", board)
+
+      "catch exception and do nothing" in {
+        controller.board should equal(board)
+
+      }
+
+
+    }
+
 
 
 
