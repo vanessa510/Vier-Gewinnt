@@ -37,12 +37,8 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
     matchInCols || matchInRows
   }
 
-  def playersHaveNoPiecesLeft: Boolean = {
-    if (players.head.piecesLeft == 0 && players(1).piecesLeft == 0) return true
+  def playersHaveNoPiecesLeft: Boolean = if (players.head.piecesLeft == 0 && players(1).piecesLeft == 0) true else false
 
-    false
-
-  }
 
   def getNextPlayerIndex: Int = if (currentPlayerIndex == 0) 1 else 0
 
