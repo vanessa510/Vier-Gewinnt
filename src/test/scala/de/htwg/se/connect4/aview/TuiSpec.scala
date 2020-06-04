@@ -27,7 +27,7 @@ class TuiSpec extends WordSpec with Matchers {
 
     "gets integer input" should {
       val board = new Board(2, 3, false)
-      val players: List[Player] = Player("test", Color.RED) :: Nil
+      val players: List[Player] = Player("test1", Color.RED) :: Player("test2", Color.YELLOW) :: Nil
       val controller = new Controller(board, players)
       val tui = new Tui(controller)
 

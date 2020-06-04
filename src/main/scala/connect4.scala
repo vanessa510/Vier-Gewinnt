@@ -1,6 +1,6 @@
 import de.htwg.se.connect4.aview.Tui
 import de.htwg.se.connect4.controller.Controller
-import de.htwg.se.connect4.model.{Board, Color, Player}
+import de.htwg.se.connect4.model.{Board, Player}
 
 import scala.io.StdIn.readLine
 
@@ -16,10 +16,11 @@ object connect4 {
 
     println(controller.getWelcomeString)
 
-    while(controller.players.size != 2) {
+    while (controller.players.size != 2) {
       controller.addPlayer(readLine())
     }
 
+    println(controller.getPlayerDemandString)
 
     var input: String = ""
     do {

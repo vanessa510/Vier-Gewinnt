@@ -18,9 +18,10 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
       board = board.set(row, col, players(currentPlayerIndex).color)
       players = players.updated(currentPlayerIndex, players(currentPlayerIndex).setPiece())
+
       currentPlayerIndex = getNextPlayerIndex
       notifyObservers
-      "It's your turn Player " + players(currentPlayerIndex).playerName
+      getPlayerDemandString
 
     }
   }
@@ -40,6 +41,10 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
     board = new Board(rows, cols, false)
     notifyObservers
     "created new Board"
+  }
+
+  def getPlayerDemandString: String = {
+    "It's your turn Player " + players(currentPlayerIndex).playerName
   }
 
 
