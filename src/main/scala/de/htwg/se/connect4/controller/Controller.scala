@@ -19,7 +19,7 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
       board = board.set(row, col, players(currentPlayerIndex).color)
       players = players.updated(currentPlayerIndex, players(currentPlayerIndex).setPiece())
 
-      if (playerWin(row, col)) return "Congratulations " + players(currentPlayerIndex).playerName + "You win."
+      if (playerWin(row, col)) return "Congratulations " + players(currentPlayerIndex).playerName + "! You win."
 
       if (playersHaveNoPiecesLeft) return "Game over. No pieces left. Press 'n' to start a new game."
 
