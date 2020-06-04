@@ -9,17 +9,18 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
   def getWelcomeString: String = "Welcome to connect 4. Please Enter your names."
 
-  def set(row: Int, col: Int): Unit = {
+  def set(row: Int, col: Int): String = {
     if (board.cell(row, col).isSet) {
-      notifyError("Cell is already set. Please chose different one.")
       notifyObservers
+      "Cell is already set. Please chose different one."
 
     } else {
 
-    board = board.set(row, col, players(currentPlayerIndex).color)
-    players = players.updated(currentPlayerIndex, players(currentPlayerIndex).setPiece())
-    currentPlayerIndex = getNextPlayerIndex
-    notifyObservers
+      board = board.set(row, col, players(currentPlayerIndex).color)
+      players = players.updated(currentPlayerIndex, players(currentPlayerIndex).setPiece())
+      currentPlayerIndex = getNextPlayerIndex
+      notifyObservers
+      "It's your turn Player " + players(currentPlayerIndex).playerName
 
     }
   }
@@ -35,9 +36,10 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
     else players = players ::: Player(input, Color.YELLOW) :: Nil
   }
 
-  def createNewBoard(rows: Int, cols: Int): Unit = {
+  def createNewBoard(rows: Int, cols: Int): String = {
     board = new Board(rows, cols, false)
     notifyObservers
+    "created new Board"
   }
 
 

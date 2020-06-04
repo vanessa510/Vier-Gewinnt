@@ -25,7 +25,7 @@ object connect4 {
     do {
 
       input = readLine()
-      tui.processInputLine(input, board)
+      println(tui.processInputLine(input, board))
     } while (input != "q")
 
   }
