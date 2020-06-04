@@ -63,7 +63,7 @@ class TuiSpec extends WordSpec with Matchers {
 
 
       "print error message" in {
-        tui.processInputLine("1,2,3", board) should startWith ("Please Enter two numbers separated by a whitespace.")
+        tui.processInputLine("1 2 3", board) should startWith ("Please Enter two numbers separated by a whitespace.")
       }
     }
 
@@ -74,7 +74,7 @@ class TuiSpec extends WordSpec with Matchers {
       val tui = new Tui(controller)
 
       "print error message" in {
-        tui.processInputLine("5,6", board) should startWith ("Please Enter two numbers separated by a whitespace.")
+        tui.processInputLine("5 6", board) should startWith ("Please Enter two numbers separated by a whitespace.")
       }
     }
 
