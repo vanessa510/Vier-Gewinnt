@@ -40,8 +40,6 @@ class Tui(controller: Controller) extends Observer {
 
           else controller.getIncorrectInputMessage
 
-
-
         case Failure(e) => controller.getIncorrectInputMessage
       }
 

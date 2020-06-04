@@ -57,12 +57,10 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
     "created new Board"
   }
 
-  def getPlayerDemandString: String = {
-    "It's your turn Player " + players(currentPlayerIndex).playerName
-  }
+  def getPlayerDemandString: String = "It's your turn Player " + players(currentPlayerIndex).playerName
 
-  def getIncorrectInputMessage: String = {
-    "Please Enter two numbers separated by a whitespace."
-  }
+
+  def getIncorrectInputMessage: String = "Please Enter two numbers separated by a whitespace."
+
 
 }
