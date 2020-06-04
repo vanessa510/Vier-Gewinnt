@@ -47,5 +47,8 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
     "It's your turn Player " + players(currentPlayerIndex).playerName
   }
 
+  def getIncorrectInputMessage: String = {
+    "Please Enter two numbers separated by a whitespace."
+  }
 
 }

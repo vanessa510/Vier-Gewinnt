@@ -20,9 +20,8 @@ class Tui(controller: Controller) extends Observer {
       case "q" => "exit game"
       case "n" => controller.createNewBoard(rows, cols)
 
-      case _ => { evaluateInput(input, board)
+      case _ =>  evaluateInput(input, board)
 
-      }
     }
   }
 
@@ -36,15 +35,14 @@ class Tui(controller: Controller) extends Observer {
             val row:Int = list.get.head
             val column:Int = list.get(1)
             if (row <= board.sizeOfRows && column <= board.sizeOfCols) controller.set(row, column)
-            else "Please Enter two numbers separated by a whitespace."
-          }
-          else {
-
-            "Please Enter two numbers separated by a whitespace."
+            else controller.getIncorrectInputMessage
           }
 
+          else controller.getIncorrectInputMessage
 
-        case Failure(e) => "Please Enter two numbers separated by a whitespace."
+
+
+        case Failure(e) => controller.getIncorrectInputMessage
       }
 
   }
