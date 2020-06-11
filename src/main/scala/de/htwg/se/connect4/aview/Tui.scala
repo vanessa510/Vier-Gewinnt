@@ -20,29 +20,9 @@ class Tui(controller: Controller) extends Observer {
       case "q" => "exit game"
       case "n" => controller.createNewBoard(rows, cols)
 
-      case _ =>  evaluateInput(input, board)
+      case _ =>  controller.handle(input, board)
 
     }
-  }
-
-  private def evaluateInput(input: String, board: Board): String = {
-    val list:Try[List[Int]] = Try(input.toList.filter(c => c != ' ').map(c => c.toString.toInt))
-
-      list match {
-        case Success(v) =>
-
-          if (list.get.size == 2) {
-            val row:Int = list.get.head
-            val column:Int = list.get(1)
-            if (row <= board.sizeOfRows && column <= board.sizeOfCols) controller.set(row, column)
-            else controller.getIncorrectInputMessage
-          }
-
-          else controller.getIncorrectInputMessage
-
-        case Failure(e) => controller.getIncorrectInputMessage
-      }
-
   }
 
   override def update: Unit = println(controller.boardToString)

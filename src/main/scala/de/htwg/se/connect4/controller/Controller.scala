@@ -5,7 +5,13 @@ import de.htwg.se.connect4.util.Observable
 
 class Controller(var board: Board, var players: List[Player]) extends Observable {
 
+  var state: ControllerState = InGameState(this)
   var currentPlayerIndex: Int = 0
+
+
+  def handle(input: String, board: Board): String = {
+    state.handle(input, board)
+  }
 
   def getWelcomeString: String = "Welcome to connect 4. Please Enter your names."
 
@@ -31,7 +37,7 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
   }
 
   def playerWin(row: Int, col: Int): Boolean = {
-    val matchInCols =  board.checkCols(col, players(currentPlayerIndex).color)
+    val matchInCols = board.checkCols(col, players(currentPlayerIndex).color)
     val matchInRows = board.checkRow(row, players(currentPlayerIndex).color)
 
     matchInCols || matchInRows
@@ -61,6 +67,5 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
 
   def getIncorrectInputMessage: String = "Please Enter two numbers separated by a whitespace."
-
 
 }
