@@ -5,8 +5,6 @@ import de.htwg.se.connect4.controller.Controller
 import de.htwg.se.connect4.model.Board
 import de.htwg.se.connect4.util.Observer
 
-import scala.util.{Failure, Success, Try}
-
 class Tui(controller: Controller) extends Observer {
 
   val rows: Int = 6
@@ -20,7 +18,7 @@ class Tui(controller: Controller) extends Observer {
       case "q" => "exit game"
       case "n" => controller.createNewBoard(rows, cols)
 
-      case _ =>  controller.handle(input, board)
+      case _ => controller.handle(input, board)
 
     }
   }

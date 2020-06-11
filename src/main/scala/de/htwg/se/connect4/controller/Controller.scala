@@ -27,7 +27,10 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
       if (playerWin(row, col)) return "Congratulations " + players(currentPlayerIndex).playerName + "! You win."
 
-      if (playersHaveNoPiecesLeft) state.nextState()
+      if (playersHaveNoPiecesLeft) {
+        state = state.nextState()
+        return state.handle("", board)
+      }
 
       currentPlayerIndex = getNextPlayerIndex
       notifyObservers
