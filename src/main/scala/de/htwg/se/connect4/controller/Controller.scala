@@ -27,7 +27,7 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
       if (playerWin(row, col)) return "Congratulations " + players(currentPlayerIndex).playerName + "! You win."
 
-      if (playersHaveNoPiecesLeft) return "Game over. No pieces left. Press 'n' to start a new game."
+      if (playersHaveNoPiecesLeft) state.nextState()
 
       currentPlayerIndex = getNextPlayerIndex
       notifyObservers
@@ -59,8 +59,14 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
   def createNewBoard(rows: Int, cols: Int): String = {
     board = new Board(rows, cols, false)
+    currentPlayerIndex = 0
+    var newPlayers: List[Player] = Nil
+    newPlayers = newPlayers ::: players.head.copy(piecesLeft = 21) :: Nil
+    newPlayers = newPlayers ::: players(1).copy(piecesLeft = 21) :: Nil
+    players = newPlayers
     notifyObservers
-    "created new Board"
+    state = InGameState(this)
+    "created new Board \n" + getPlayerDemandString
   }
 
   def getPlayerDemandString: String = "It's your turn Player " + players(currentPlayerIndex).playerName
