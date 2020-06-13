@@ -118,12 +118,28 @@ class ControllerSpec extends WordSpec with Matchers {
     val controller = new Controller(board, players)
 
     "detect no win" in {
-      controller.playerWin(0,2) shouldBe false
+      controller.playerWin(0, 2) shouldBe false
     }
   }
 
+  "Controller " should {
+    var board = new Board(2, 4, false)
+    val players: List[Player] = Player("test1", Color.RED, 1) :: Player("test2", Color.YELLOW, 0) :: Nil
+    val controller = new Controller(board, players)
 
+    "undo step" in {
+      controller.undo() should startWith("Undo Step.")
+    }
+  }
 
+  "Controller " should {
+    var board = new Board(2, 4, false)
+    val players: List[Player] = Player("test1", Color.RED, 1) :: Player("test2", Color.YELLOW, 0) :: Nil
+    val controller = new Controller(board, players)
 
+    "redo step" in {
+      controller.redo should startWith("Redo Step.")
+    }
+  }
 
 }

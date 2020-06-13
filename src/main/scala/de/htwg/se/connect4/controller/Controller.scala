@@ -91,7 +91,7 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
   def redo: String = {
     undoManager.redoStep()
     notifyObservers
-    "redo Step."
+    "Redo Step."
   }
 
 }
