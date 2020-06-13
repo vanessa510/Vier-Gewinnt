@@ -26,7 +26,7 @@ class TuiSpec extends WordSpec with Matchers {
 
   }
 
-  "get 'q' input" should {
+  "gets 'q' input" should {
     val board = new Board(2, 3, false)
     val players: List[Player] = Player("test", Color.RED) :: Nil
     val controller = new Controller(board, players)
@@ -34,6 +34,31 @@ class TuiSpec extends WordSpec with Matchers {
 
     "exit game" in {
       tui.processInputLine("q", board) should startWith("exit game")
+    }
+  }
+
+  "gets 'u' input" should {
+    val board = new Board(2, 3, false)
+    val players: List[Player] = Player("test", Color.RED) :: Player("test2", Color.YELLOW) :: Nil
+    val controller = new Controller(board, players)
+    val tui = new Tui(controller)
+
+    "doStep" in {
+      tui.processInputLine("0 0", board)
+      controller.board.cell(0,0).isSet shouldBe true
+    }
+
+    "undo step" in {
+
+      tui.processInputLine("u", board)
+      controller.board.cell(0,0).isSet shouldBe false
+    }
+
+    tui.processInputLine("12", board)
+
+    "redo step" in {
+      tui.processInputLine("r", board)
+      controller.board.cell(1,2).isSet shouldBe true
     }
   }
 }
