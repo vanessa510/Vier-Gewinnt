@@ -29,6 +29,7 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
       if (playersHaveNoPiecesLeft) {
         state = state.nextState()
+        notifyObservers
         return state.handle("", board)
       }
 
