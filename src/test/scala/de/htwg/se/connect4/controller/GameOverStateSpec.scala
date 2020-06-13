@@ -30,9 +30,9 @@ class GameOverStateSpec extends WordSpec with Matchers {
       val tui = new Tui(controller)
 
       "change state to inGameState" in {
-        controller.state.nextState()
-        tui.processInputLine("n", board)
-        controller.state shouldBe InGameState(controller)
+        controller.state = GameOverState(controller)
+
+        controller.state.nextState() shouldBe InGameState(controller)
       }
     }
 
