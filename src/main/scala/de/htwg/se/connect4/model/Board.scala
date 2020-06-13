@@ -61,6 +61,7 @@ case class Board(cells: Matrix[Cell]) {
         matrix.cell(row, col).color match {
           case Some(Color.RED) => returnString += " r |"
           case Some(Color.YELLOW) => returnString += " y |"
+          case Some(Color.EMPTY) => returnString += " - |"
 
 
         }

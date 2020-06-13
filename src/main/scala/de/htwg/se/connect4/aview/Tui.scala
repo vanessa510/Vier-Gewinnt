@@ -17,6 +17,8 @@ class Tui(controller: Controller) extends Observer {
     input match {
       case "q" => "exit game"
       case "n" => controller.createNewBoard(rows, cols)
+      case "r" => controller.redo
+      case "u" => controller.undo
 
       case _ => controller.handle(input, board)
 

@@ -82,12 +82,16 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
   def getIncorrectInputMessage: String = "Please Enter two numbers separated by a whitespace."
 
-  def undo(): Unit = {
+  def undo(): String = {
     undoManager.undoStep()
+    notifyObservers
+    "Undo Step."
   }
 
-  def redo: Unit = {
+  def redo: String = {
     undoManager.redoStep()
+    notifyObservers
+    "redo Step."
   }
 
 }
