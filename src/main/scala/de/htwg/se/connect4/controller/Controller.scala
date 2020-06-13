@@ -1,12 +1,13 @@
 package de.htwg.se.connect4.controller
 
 import de.htwg.se.connect4.model.{Board, Color, Player}
-import de.htwg.se.connect4.util.Observable
+import de.htwg.se.connect4.util.{Observable, UndoManager}
 
 class Controller(var board: Board, var players: List[Player]) extends Observable {
 
   var state: ControllerState = InGameState(this)
   var currentPlayerIndex: Int = 0
+  private val undoManager = new UndoManager
 
 
   def handle(input: String, board: Board): String = {
@@ -22,7 +23,7 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
     } else {
 
-      board = board.set(row, col, players(currentPlayerIndex).color)
+      undoManager.doStep(new SetCommand(row, col, players(currentPlayerIndex), this, true))
       players = players.updated(currentPlayerIndex, players(currentPlayerIndex).setPiece())
 
       if (playerWin(row, col)) return triggerNextStateAndEvaluateInput
@@ -80,5 +81,13 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
 
   def getIncorrectInputMessage: String = "Please Enter two numbers separated by a whitespace."
+
+  def undo(): Unit = {
+    undoManager.undoStep()
+  }
+
+  def redo: Unit = {
+    undoManager.redoStep()
+  }
 
 }

@@ -19,7 +19,7 @@ case class Board(cells: Matrix[Cell]) {
 
   def row(row: Int): Set = Set(cells.rows(row))
 
-  def set(row: Int, col: Int, color: Color.Value): Board = copy(cells.replaceCell(row, col, Cell(true, Some(color))))
+  def set(row: Int, col: Int, color: Color.Value, isSet: Boolean): Board = copy(cells.replaceCell(row, col, Cell(isSet, Some(color))))
 
   def checkRow(row: Int, color: Color): Boolean = {
     var pieces = new ListBuffer[Option[Color]]()

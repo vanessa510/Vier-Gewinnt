@@ -97,10 +97,10 @@ class ControllerSpec extends WordSpec with Matchers {
 
   "Controller" should {
     var board = new Board(2, 4, false)
-    board = board.set(0, 0, Color.RED)
-    board = board.set(0, 1, Color.RED)
-    board = board.set(0, 2, Color.RED)
-    board = board.set(0, 3, Color.RED)
+    board = board.set(0, 0, Color.RED, true)
+    board = board.set(0, 1, Color.RED, true)
+    board = board.set(0, 2, Color.RED, true)
+    board = board.set(0, 3, Color.RED, true)
     val players: List[Player] = Player("test1", Color.RED, 1) :: Player("test2", Color.YELLOW, 0) :: Nil
     val controller = new Controller(board, players)
 
@@ -111,9 +111,9 @@ class ControllerSpec extends WordSpec with Matchers {
 
   "Controller" should {
     var board = new Board(2, 4, false)
-    board = board.set(0, 0, Color.RED)
-    board = board.set(0, 1, Color.RED)
-    board = board.set(0, 2, Color.RED)
+    board = board.set(0, 0, Color.RED, true)
+    board = board.set(0, 1, Color.RED, true)
+    board = board.set(0, 2, Color.RED, true)
     val players: List[Player] = Player("test1", Color.RED, 1) :: Player("test2", Color.YELLOW, 0) :: Nil
     val controller = new Controller(board, players)
 
