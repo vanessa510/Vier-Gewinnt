@@ -90,6 +90,22 @@ class BoardSpec extends WordSpec with Matchers {
         }
       }
 
+      "detect no color available" should {
+        val board = new Board(2, 3, false)
+        val newBoard = Board(board.cells.replaceCell(1, 1, Cell(true, Some(Color.EMPTY))))
+
+        "print cell with '-'" in {
+          val boardAsString = newBoard.getBoardAsString(newBoard.cells)
+
+          boardAsString should startWith(
+            "\n" +
+              " __  __  __ \n" +
+              " - | - | - |\n" +
+              " __  __  __ \n" +
+              " - | - | - |")
+        }
+      }
+
       "checks rows correctly if match found" should {
         var board = new Board(2, 4, false)
         board = Board(board.cells.replaceCell(0, 0, Cell(true, Some(Color.YELLOW))))
