@@ -27,5 +27,7 @@ case class InGameState(controller: Controller) extends ControllerState {
     }
   }
 
-  override def nextState(): ControllerState = GameOverState(controller)
+  override def nextState(): ControllerState =
+    if (controller.playersHaveNoPiecesLeft) GameOverState(controller)
+    else PlayerWinState(controller, controller.players(controller.currentPlayerIndex).playerName)
 }

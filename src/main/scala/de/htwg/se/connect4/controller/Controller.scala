@@ -25,19 +25,22 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
       board = board.set(row, col, players(currentPlayerIndex).color)
       players = players.updated(currentPlayerIndex, players(currentPlayerIndex).setPiece())
 
-      if (playerWin(row, col)) return "Congratulations " + players(currentPlayerIndex).playerName + "! You win."
+      if (playerWin(row, col)) return triggerNextStateAndEvaluateInput
 
-      if (playersHaveNoPiecesLeft) {
-        state = state.nextState()
-        notifyObservers
-        return state.handle("", board)
-      }
+      if (playersHaveNoPiecesLeft) return triggerNextStateAndEvaluateInput
+
 
       currentPlayerIndex = getNextPlayerIndex
       notifyObservers
       getPlayerDemandString
 
     }
+  }
+
+  private def triggerNextStateAndEvaluateInput: String = {
+    state = state.nextState()
+    notifyObservers
+    state.handle("", board)
   }
 
   def playerWin(row: Int, col: Int): Boolean = {
