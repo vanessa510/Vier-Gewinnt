@@ -14,13 +14,7 @@ object connect4 {
 
   def main(args: Array[String]): Unit = {
 
-    println(controller.getWelcomeString)
-
-    while (controller.players.size != 2) {
-      controller.addPlayer(readLine())
-    }
-
-    println(controller.getPlayerDemandString)
+    readInPlayerNames()
 
     var input: String = ""
     do {
@@ -29,5 +23,15 @@ object connect4 {
       println(tui.processInputLine(input, board))
     } while (input != "q")
 
+  }
+
+  private def readInPlayerNames(): Unit = {
+    println(controller.getWelcomeString)
+
+    while (controller.players.size != 2) {
+      controller.addPlayer(readLine())
+    }
+
+    println(controller.getPlayerDemandString)
   }
 }
