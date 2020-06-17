@@ -44,6 +44,27 @@ case class Board(cells: Matrix[Cell]) {
 
   }
 
+  def checkDiagonal(row: Int, col: Int, playerColor: Color): Boolean = {
+    var rowCounter = row
+    var colCounter = col
+    while (rowCounter != 0 && colCounter != 0) {
+      rowCounter -= 1
+      colCounter -= 1
+    }
+
+    var counter = 0
+    while (rowCounter < sizeOfRows && colCounter < sizeOfCols) {
+      val color = cell(rowCounter, colCounter).color
+
+      if (color.nonEmpty && color.get.equals(playerColor)) counter += 1 else counter = 0
+      rowCounter += 1
+      colCounter += 1
+    }
+
+    if(counter == 4) true else false
+
+  }
+
   def getBoardAsString(matrix: Matrix[Cell]): String = {
     val rows = matrix.sizeOfRows
     val cols = matrix.sizeOfCols

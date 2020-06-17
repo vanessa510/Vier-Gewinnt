@@ -180,6 +180,31 @@ class BoardSpec extends WordSpec with Matchers {
         }
       }
 
+      "check diagonal" should {
+        var board = new Board(4,5,false)
+        board = Board(board.cells.replaceCell(0,1, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(1,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(2,3, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(3,4, Cell(true, Some(Color.YELLOW))))
+
+        "return true" in {
+          board.checkDiagonal(2,3, Color.YELLOW) shouldBe true
+        }
+
+      }
+
+      "check diagonal" should {
+        var board = new Board(4, 6, false)
+        board = Board(board.cells.replaceCell(0,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(2,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(3,2, Cell(true, Some(Color.YELLOW))))
+
+        "return false" in {
+          board.checkDiagonal(2,3, Color.YELLOW) shouldBe false
+        }
+      }
+
+
 
 
 
