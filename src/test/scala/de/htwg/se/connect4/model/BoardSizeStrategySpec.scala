@@ -19,7 +19,7 @@ class BoardSizeStrategySpec extends WordSpec with Matchers {
 
     "called with tinyStrategy" should {
       "create tiny board" in {
-        val board = BoardSizeStrategy.execute((2, 3))
+        val board = BoardSizeStrategy.strategy((2, 3))
 
         board.sizeOfRows shouldBe 2
         board.sizeOfCols shouldBe 3
@@ -29,7 +29,7 @@ class BoardSizeStrategySpec extends WordSpec with Matchers {
 
     "called with bigStrategy" should {
       "create big board" in {
-        val board = BoardSizeStrategy.execute((15,16))
+        val board = BoardSizeStrategy.strategy((15,16))
 
         board.sizeOfCols shouldBe  16
         board.sizeOfRows shouldBe 15
