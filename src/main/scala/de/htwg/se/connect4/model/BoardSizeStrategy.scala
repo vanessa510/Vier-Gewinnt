@@ -22,7 +22,7 @@ object BoardSizeStrategy {
       case (6,7) => defaultSizeStrategy(boardSize)
       case (2,3) => tinySizeStrategy(boardSize)
       case (15,16) => bigSizeStrategy(boardSize)
-      case _ => defaultSizeStrategy(boardSize)
+      case (_,_) => defaultSizeStrategy((6,7))
     }
   }
 
