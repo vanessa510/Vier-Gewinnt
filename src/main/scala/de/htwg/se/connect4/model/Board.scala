@@ -25,9 +25,11 @@ case class Board(cells: Matrix[Cell]) {
     var pieces = new ListBuffer[Option[Color]]()
     for (col <- 0 until sizeOfCols) {
       pieces += cell(row, col).color
-  }
+    }
     var counter = 0
-    for (Some(elem) <- pieces) {if (elem.equals(color)) counter += 1 else counter = 0}
+    for (Some(elem) <- pieces) {
+      if (elem.equals(color)) counter += 1 else counter = 0
+    }
 
     if (counter >= 4) true else false
   }
@@ -38,7 +40,9 @@ case class Board(cells: Matrix[Cell]) {
       pieces += cell(row, col).color
     }
     var counter = 0
-    for (Some(elem) <- pieces) {if (elem.equals(color)) counter += 1 else counter = 0}
+    for (Some(elem) <- pieces) {
+      if (elem.equals(color)) counter += 1 else counter = 0
+    }
 
     if (counter >= 4) true else false
 
@@ -119,3 +123,11 @@ case class Board(cells: Matrix[Cell]) {
     returnString
   }
 }
+
+
+case class Creator() {
+  def sizeOfBoard(sizeOfRows: Int, sizeOfCols: Int): Board = {
+    new Board(sizeOfRows, sizeOfCols, false)
+  }
+}
+
