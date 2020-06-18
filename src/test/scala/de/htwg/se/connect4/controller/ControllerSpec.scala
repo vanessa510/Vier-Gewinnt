@@ -50,8 +50,8 @@ class ControllerSpec extends WordSpec with Matchers {
 
       controller.players.head.piecesLeft shouldBe 21
       controller.players(1).piecesLeft shouldBe 21
-      controller.board.sizeOfCols shouldBe 1
-      controller.board.sizeOfRows shouldBe 1
+      controller.board.sizeOfCols shouldBe 7
+      controller.board.sizeOfRows shouldBe 6
 
     }
 
