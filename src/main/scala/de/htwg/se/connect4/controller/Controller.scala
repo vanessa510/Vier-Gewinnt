@@ -60,9 +60,9 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
   def boardToString: String = board.getBoardAsString(board.cells)
 
 
-  def addPlayer(input: String): Unit = {
-    if (players.isEmpty) players = players ::: Player(input, Color.RED) :: Nil
-    else players = players ::: Player(input, Color.YELLOW) :: Nil
+  def addPlayer(input: String): String = {
+    if (players.isEmpty) { players = players ::: Player(input, Color.RED) :: Nil; return "Added Player 1" }
+    else players = players ::: Player(input, Color.YELLOW) :: Nil; "Added Player 2"
   }
 
   def createNewBoard(rows: Int, cols: Int): String = {
