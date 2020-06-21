@@ -29,11 +29,13 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
       players = players.updated(currentPlayerIndex, players(currentPlayerIndex).setPiece())
 
       if (playerWin(row, col)) {
-        triggerNextStateAndEvaluateInput; return ""
+        triggerNextStateAndEvaluateInput;
+        return ""
       }
 
       if (playersHaveNoPiecesLeft) {
-        triggerNextStateAndEvaluateInput; return ""
+        triggerNextStateAndEvaluateInput;
+        return ""
       }
 
       currentPlayerIndex = getNextPlayerIndex
@@ -64,10 +66,15 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
   def boardToString: String = board.getBoardAsString(board.cells)
 
 
-  def addPlayer(input: String): Unit = {
-    if (players.isEmpty) players = players ::: Player(input, Color.RED) :: Nil
-    else if (players.size < 2) { players = players ::: Player(input, Color.YELLOW) :: Nil; triggerNextStateAndEvaluateInput }
-    else triggerNextStateAndEvaluateInput
+  def addPlayer(input: String): String = {
+    if (players.isEmpty) {
+      players = players ::: Player(input, Color.RED) :: Nil
+    }
+    else if (players.size < 2) {
+      players = players ::: Player(input, Color.YELLOW) :: Nil
+      triggerNextStateAndEvaluateInput
+    }
+    else triggerNextStateAndEvaluateInput; ""
   }
 
   def createNewBoard(rows: Int, cols: Int): String = {
