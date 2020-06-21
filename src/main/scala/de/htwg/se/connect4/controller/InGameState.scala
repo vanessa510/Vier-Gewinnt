@@ -30,4 +30,6 @@ case class InGameState(controller: Controller) extends ControllerState {
   override def nextState(): ControllerState =
     if (controller.playersHaveNoPiecesLeft) GameOverState(controller)
     else PlayerWinState(controller, controller.players(controller.currentPlayerIndex).playerName)
+
+  override def getString(): String = controller.getPlayerDemandString + "\n" + controller.boardToString
 }
