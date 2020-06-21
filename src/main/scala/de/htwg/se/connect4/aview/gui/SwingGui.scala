@@ -1,9 +1,9 @@
 package de.htwg.se.connect4.aview.gui
 
-import scala.swing._
 import de.htwg.se.connect4.controller.Controller
 
 import scala.swing.Swing.LineBorder
+import scala.swing._
 import scala.swing.event.{ButtonClicked, Key, KeyPressed}
 
 
@@ -37,7 +37,10 @@ class SwingGui(controller: Controller) extends Frame {
 
     reactions += {
       case ButtonClicked(`nextPlayerButton`) => controller.handle(nameTextField.text, controller.board);
-        contents.clear; contents += nameTextField; contents += nextPanelButton; repaint()
+        contents.clear;
+        contents += nameTextField;
+        contents += nextPanelButton;
+        repaint()
       case ButtonClicked(`nextPanelButton`) => controller.handle(nameTextField.text, controller.board); changePanel
     }
   }
@@ -51,7 +54,6 @@ class SwingGui(controller: Controller) extends Frame {
   }
 
 
-
   def gridPanel = new GridPanel(controller.sizeOfRows, controller.sizeOfCols) {
     border = LineBorder(java.awt.Color.BLACK, 2)
     background = java.awt.Color.BLACK
@@ -63,7 +65,6 @@ class SwingGui(controller: Controller) extends Frame {
       val cellPanel = new CellPanel(row, col, controller)
       cells(row)(col) = cellPanel
       contents += cellPanel
-      listenTo(cellPanel)
 
     }
   }
