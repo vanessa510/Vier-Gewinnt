@@ -1,6 +1,6 @@
 package de.htwg.se.connect4.aview
 
-import de.htwg.se.connect4.controller.Controller
+import de.htwg.se.connect4.controller.{Controller, InGameState}
 import de.htwg.se.connect4.model.{Board, Color, Player}
 import org.scalatest.{Matchers, WordSpec}
 
@@ -42,6 +42,7 @@ class TuiSpec extends WordSpec with Matchers {
     val players: List[Player] = Player("test", Color.RED) :: Player("test2", Color.YELLOW) :: Nil
     val controller = new Controller(board, players)
     val tui = new Tui(controller)
+    controller.state = InGameState(controller)
 
     "doStep" in {
       tui.processInputLine("0 0", board)
