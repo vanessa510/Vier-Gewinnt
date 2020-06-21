@@ -106,4 +106,7 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
     "Redo Step."
   }
 
+  def sizeOfRows: Int = board.sizeOfRows
+  def sizeOfCols: Int = board.sizeOfCols
+
 }
