@@ -22,7 +22,7 @@ class CellPanel(row: Int, col: Int, controller: Controller) extends FlowPanel {
 
 
   val cell = new BoxPanel(Orientation.Vertical) {
-    background = cellColor
+    background = cellColor(row, col)
     preferredSize = new Dimension(51, 51)
     border = Swing.BeveledBorder(Swing.Raised)
 
@@ -39,6 +39,8 @@ class CellPanel(row: Int, col: Int, controller: Controller) extends FlowPanel {
 
   def redraw = {
     contents.clear()
+
+    cell.background = cellColor(row, col)
 
     contents += cell
 

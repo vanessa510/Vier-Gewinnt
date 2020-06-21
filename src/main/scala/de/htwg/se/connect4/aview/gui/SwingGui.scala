@@ -78,6 +78,29 @@ class SwingGui(controller: Controller) extends Frame with Observer {
     }
   }
 
+  menuBar = new MenuBar {
+    contents += new Menu("File") {
+      mnemonic = Key.F
+      contents += new MenuItem(Action("New") {
+        controller.createNewBoard(controller.sizeOfRows, controller.sizeOfCols)
+      })
+      contents += new MenuItem(Action("Quit") {
+        System.exit(0)
+      })
+    }
+    contents += new Menu("Edit") {
+      mnemonic = Key.E
+      contents += new MenuItem(Action("Undo") {
+        controller.undo
+        redraw
+      })
+      contents += new MenuItem(Action("Redo") {
+        controller.redo
+        redraw
+      })
+    }
+  }
+
 
   def redraw = {
     for {
@@ -93,7 +116,8 @@ class SwingGui(controller: Controller) extends Frame with Observer {
   def updateStatusLine =
     if (controller.state.equals(InGameState(controller))) statusLine.text = controller.getPlayerDemandString
     else statusLine.text = controller.getString
-    repaint()
+
+  repaint()
 
 
   contents = welcomePanel
