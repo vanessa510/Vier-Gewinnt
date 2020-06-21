@@ -13,6 +13,7 @@ class InGameStateSpec extends WordSpec with Matchers {
       val players: List[Player] = Player("test1", Color.RED) :: Player("test2", Color.YELLOW) :: Nil
       val controller = new Controller(board, players)
       val tui = new Tui(controller)
+      controller.state = InGameState(controller)
 
 
       tui.processInputLine("1 2", board)
@@ -28,6 +29,7 @@ class InGameStateSpec extends WordSpec with Matchers {
       val players: List[Player] = Player("test", Color.RED) :: Nil
       val controller = new Controller(board, players)
       val tui = new Tui(controller)
+      controller.state = InGameState(controller)
 
 
       "print error message" in {
@@ -41,6 +43,7 @@ class InGameStateSpec extends WordSpec with Matchers {
       val players: List[Player] = Player("test", Color.RED) :: Nil
       val controller = new Controller(board, players)
       val tui = new Tui(controller)
+      controller.state = InGameState(controller)
 
 
       "print error message" in {
@@ -53,6 +56,7 @@ class InGameStateSpec extends WordSpec with Matchers {
       val players: List[Player] = Player("test", Color.RED) :: Nil
       val controller = new Controller(board, players)
       val tui = new Tui(controller)
+      controller.state = InGameState(controller)
 
       "print error message" in {
         tui.processInputLine("5 6", board) should startWith("Please Enter two numbers separated by a whitespace.")
@@ -67,6 +71,7 @@ class InGameStateSpec extends WordSpec with Matchers {
       board = board.set(0, 3, Color.RED, true)
       val players: List[Player] = Player("test1", Color.RED, 1) :: Player("test2", Color.YELLOW, 0) :: Nil
       val controller = new Controller(board, players)
+      controller.state = InGameState(controller)
 
       "change state correctly" in {
         controller.state.nextState() shouldBe PlayerWinState(controller, "test1")

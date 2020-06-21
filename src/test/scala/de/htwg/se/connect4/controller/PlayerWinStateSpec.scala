@@ -15,7 +15,7 @@ class PlayerWinStateSpec extends WordSpec with Matchers {
     controller.state = PlayerWinState(controller, "test1")
 
     "print correct string" in {
-      controller.state.handle("", board) should startWith ("Congratulations! Player test1 You win.")
+      controller.getString should startWith ("Congratulations! Player test1 You win.")
 
     }
 
