@@ -5,9 +5,11 @@ import de.htwg.se.connect4.util.{Observable, UndoManager}
 
 class Controller(var board: Board, var players: List[Player]) extends Observable {
 
-  var state: ControllerState = InGameState(this)
+  var state: ControllerState = InitializationState(this)
   var currentPlayerIndex: Int = 0
   private val undoManager = new UndoManager
+
+  def getString: String = state.getString()
 
 
   def handle(input: String, board: Board): String = {
@@ -26,22 +28,24 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
       undoManager.doStep(new SetCommand(row, col, players(currentPlayerIndex), this, true))
       players = players.updated(currentPlayerIndex, players(currentPlayerIndex).setPiece())
 
-      if (playerWin(row, col)) return triggerNextStateAndEvaluateInput
+      if (playerWin(row, col)) {
+        triggerNextStateAndEvaluateInput; return ""
+      }
 
-      if (playersHaveNoPiecesLeft) return triggerNextStateAndEvaluateInput
-
+      if (playersHaveNoPiecesLeft) {
+        triggerNextStateAndEvaluateInput; return ""
+      }
 
       currentPlayerIndex = getNextPlayerIndex
       notifyObservers
-      getPlayerDemandString
-
+      ""
     }
   }
 
-  private def triggerNextStateAndEvaluateInput: String = {
+  private def triggerNextStateAndEvaluateInput: Unit = {
     state = state.nextState()
     notifyObservers
-    state.handle("", board)
+
   }
 
   def playerWin(row: Int, col: Int): Boolean = {
@@ -62,7 +66,8 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
   def addPlayer(input: String): Unit = {
     if (players.isEmpty) players = players ::: Player(input, Color.RED) :: Nil
-    else players = players ::: Player(input, Color.YELLOW) :: Nil
+    else if (players.size < 2) { players = players ::: Player(input, Color.YELLOW) :: Nil; triggerNextStateAndEvaluateInput }
+    else triggerNextStateAndEvaluateInput
   }
 
   def createNewBoard(rows: Int, cols: Int): String = {

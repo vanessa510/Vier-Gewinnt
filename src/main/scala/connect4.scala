@@ -11,16 +11,10 @@ object connect4 {
   val controller = new Controller(board, players)
   val tui = new Tui(controller)
 
+  controller.notifyObservers
+
 
   def main(args: Array[String]): Unit = {
-
-    println(controller.getWelcomeString)
-
-    while (controller.players.size != 2) {
-      controller.addPlayer(readLine())
-    }
-
-    println(controller.getPlayerDemandString)
 
     var input: String = ""
     do {
