@@ -1,6 +1,6 @@
 package de.htwg.se.connect4.controller
 
-import de.htwg.se.connect4.model.{Board, BoardSizeStrategy, Cell, Color, Player}
+import de.htwg.se.connect4.model._
 import de.htwg.se.connect4.util.{Observable, UndoManager}
 
 class Controller(var board: Board, var players: List[Player]) extends Observable {
@@ -74,7 +74,8 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
       players = players ::: Player(input, Color.YELLOW) :: Nil
       triggerNextStateAndEvaluateInput
     }
-    else triggerNextStateAndEvaluateInput; ""
+    else triggerNextStateAndEvaluateInput;
+    ""
   }
 
   def createNewBoard(rows: Int, cols: Int): String = {
@@ -107,8 +108,11 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
   }
 
   def sizeOfRows: Int = board.sizeOfRows
+
   def sizeOfCols: Int = board.sizeOfCols
+
   def isSet(row: Int, col: Int): Boolean = board.cell(row, col).isSet
+
   def cell(row: Int, col: Int): Cell = board.cell(row, col)
 
 }

@@ -1,17 +1,21 @@
 package de.htwg.se.connect4.aview.gui
 
-import de.htwg.se.connect4.controller.Controller
+import de.htwg.se.connect4.controller.{Controller, InGameState}
+import de.htwg.se.connect4.util.Observer
 
 import scala.swing.Swing.LineBorder
 import scala.swing._
 import scala.swing.event.{ButtonClicked, Key, KeyPressed}
 
 
-class SwingGui(controller: Controller) extends Frame {
+class SwingGui(controller: Controller) extends Frame with Observer {
 
+  controller.add(this)
   title = "Connect 4"
 
   var cells = Array.ofDim[CellPanel](controller.sizeOfRows, controller.sizeOfCols)
+  val statusLine = new Label(controller.getString)
+
 
   def welcomePanel = new BoxPanel(Orientation.Vertical) {
     val nameTextField = new TextField() {
@@ -29,6 +33,7 @@ class SwingGui(controller: Controller) extends Frame {
 
     contents += new BoxPanel(Orientation.Vertical) {
       contents += nameTextField
+      contents += statusLine
     }
 
     contents += new BoxPanel(Orientation.Horizontal) {
@@ -37,9 +42,9 @@ class SwingGui(controller: Controller) extends Frame {
 
     reactions += {
       case ButtonClicked(`nextPlayerButton`) => controller.handle(nameTextField.text, controller.board);
-        contents.clear;
-        contents += nameTextField;
-        contents += nextPanelButton;
+        contents.clear
+        contents += nameTextField
+        contents += nextPanelButton
         repaint()
       case ButtonClicked(`nextPanelButton`) => controller.handle(nameTextField.text, controller.board); changePanel
     }
@@ -48,6 +53,7 @@ class SwingGui(controller: Controller) extends Frame {
   def changePanel = {
     contents = new BorderPanel {
       add(gridPanel, BorderPanel.Position.Center)
+      add(statusLine, BorderPanel.Position.South)
     }
 
     redraw
@@ -66,8 +72,12 @@ class SwingGui(controller: Controller) extends Frame {
       cells(row)(col) = cellPanel
       contents += cellPanel
 
+      listenTo(cellPanel)
+
+
     }
   }
+
 
   def redraw = {
     for {
@@ -75,12 +85,21 @@ class SwingGui(controller: Controller) extends Frame {
       column <- 0 until controller.sizeOfCols
     } cells(row)(column).redraw
 
+
+    updateStatusLine
     repaint
   }
+
+  def updateStatusLine =
+    if (controller.state.equals(InGameState(controller))) statusLine.text = controller.getPlayerDemandString
+    else statusLine.text = controller.getString
+    repaint()
+
 
   contents = welcomePanel
 
   visible = true
 
+  override def update: Unit = updateStatusLine
 
 }

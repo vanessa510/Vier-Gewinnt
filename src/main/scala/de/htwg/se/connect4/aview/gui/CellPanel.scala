@@ -1,12 +1,10 @@
 package de.htwg.se.connect4.aview.gui
 
-import java.awt.Rectangle
-
 import de.htwg.se.connect4.controller.Controller
 import de.htwg.se.connect4.model.Color
 
 import scala.swing.event.MouseClicked
-import scala.swing.{BoxPanel, Color, Dimension, FlowPanel, Graphics2D, Orientation, Panel, Swing}
+import scala.swing.{BoxPanel, Color, Dimension, FlowPanel, Orientation, Swing}
 
 class CellPanel(row: Int, col: Int, controller: Controller) extends FlowPanel {
 
@@ -21,7 +19,6 @@ class CellPanel(row: Int, col: Int, controller: Controller) extends FlowPanel {
 
     cellColor
   }
-
 
 
   val cell = new BoxPanel(Orientation.Vertical) {
