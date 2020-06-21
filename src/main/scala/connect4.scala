@@ -1,4 +1,5 @@
 import de.htwg.se.connect4.aview.Tui
+import de.htwg.se.connect4.aview.gui.SwingGui
 import de.htwg.se.connect4.controller.Controller
 import de.htwg.se.connect4.model.{Board, BoardSizeStrategy, Player}
 
@@ -10,6 +11,7 @@ object connect4 {
   var players: List[Player] = Nil
   val controller = new Controller(board, players)
   val tui = new Tui(controller)
+  val gui = new SwingGui(controller)
 
   controller.notifyObservers
 
