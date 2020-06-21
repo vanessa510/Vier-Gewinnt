@@ -8,4 +8,6 @@ abstract class ControllerState {
 
   def nextState(): ControllerState
 
+  def getString(): String
+
 }
