@@ -9,8 +9,7 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
   var currentPlayerIndex: Int = 0
   private val undoManager = new UndoManager
 
-
-  def handle(input: String, board: Board): String = {
+  def handle(input: String, board: Board): Unit = {
     state.handle(input, board)
   }
 
@@ -26,9 +25,9 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
       undoManager.doStep(new SetCommand(row, col, players(currentPlayerIndex), this, true))
       players = players.updated(currentPlayerIndex, players(currentPlayerIndex).setPiece())
 
-      if (playerWin(row, col)) return triggerNextStateAndEvaluateInput
+      if (playerWin(row, col)) triggerNextStateAndNotifyObservers
 
-      if (playersHaveNoPiecesLeft) return triggerNextStateAndEvaluateInput
+      if (playersHaveNoPiecesLeft) triggerNextStateAndNotifyObservers
 
 
       currentPlayerIndex = getNextPlayerIndex
@@ -38,11 +37,10 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
     }
   }
 
-  private def triggerNextStateAndEvaluateInput: String = {
+  private def triggerNextStateAndNotifyObservers: Unit = {
     state = state.nextState()
     notifyObservers
-    state.handle("", board)
-    state.welcomeString()
+
   }
 
   def playerWin(row: Int, col: Int): Boolean = {
@@ -61,11 +59,15 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
   def boardToString: String = board.getBoardAsString(board.cells)
 
 
-  def addPlayer(input: String): String = {
-    if (players.isEmpty) { players = players ::: Player(input, Color.RED) :: Nil; return "Added Player 1" }
-    else if (players.size < 2) { players = players ::: Player(input, Color.YELLOW) :: Nil;
-       triggerNextStateAndEvaluateInput }
-    else  triggerNextStateAndEvaluateInput
+  def addPlayer(input: String): Unit = {
+    if (players.isEmpty) {
+      players = players ::: Player(input, Color.RED) :: Nil
+    }
+    else if (players.size < 2) {
+      players = players ::: Player(input, Color.YELLOW) :: Nil
+      triggerNextStateAndNotifyObservers;
+    }
+    else triggerNextStateAndNotifyObservers
   }
 
   def createNewBoard(rows: Int, cols: Int): String = {

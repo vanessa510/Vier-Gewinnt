@@ -12,7 +12,7 @@ class Tui(controller: Controller) extends Observer {
 
   controller.add(this)
 
-  def processInputLine(input: String, board: Board): String = {
+  def processInputLine(input: String, board: Board): Unit = {
 
     input match {
       case "q" => "exit game"
@@ -25,7 +25,5 @@ class Tui(controller: Controller) extends Observer {
     }
   }
 
-  override def update: Unit = if (controller.state == InitializationState(controller)) println(controller.state.welcomeString())
-  else println(controller.boardToString)
-
+  override def update: Unit = println(controller.state.getString())
 }

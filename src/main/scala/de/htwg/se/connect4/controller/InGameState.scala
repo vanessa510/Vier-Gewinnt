@@ -6,7 +6,7 @@ import scala.util.{Failure, Success, Try}
 
 case class InGameState(controller: Controller) extends ControllerState {
 
-  override def handle(input: String, board: Board): String = evaluateInput(input, board)
+  override def handle(input: String, board: Board): Unit = evaluateInput(input, board)
 
   def evaluateInput(input: String, board: Board): String = {
     val list:Try[List[Int]] = Try(input.toList.filter(c => c != ' ').map(c => c.toString.toInt))
@@ -31,5 +31,5 @@ case class InGameState(controller: Controller) extends ControllerState {
     if (controller.playersHaveNoPiecesLeft) GameOverState(controller)
     else PlayerWinState(controller, controller.players(controller.currentPlayerIndex).playerName)
 
-  override def welcomeString(): String = controller.getPlayerDemandString
+  override def getString(): String = controller.boardToString; controller.getPlayerDemandString
 }

@@ -4,9 +4,9 @@ import de.htwg.se.connect4.model.Board
 
 abstract class ControllerState {
 
-  def handle(input: String, board: Board): String
+  def handle(input: String, board: Board): Unit
 
-  def welcomeString(): String
+  def getString(): String
 
   def nextState(): ControllerState
 
