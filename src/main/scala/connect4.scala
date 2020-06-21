@@ -13,17 +13,9 @@ object connect4 {
   val tui = new Tui(controller)
   val gui = new SwingGui(controller)
 
+  controller.notifyObservers
 
   def main(args: Array[String]): Unit = {
-
-    println(controller.getWelcomeString)
-
-    while (controller.players.size < 2) {
-      controller.addPlayer(readLine())
-    }
-
-    controller.getPlayerDemandString
-
 
     var input: String = ""
     do {

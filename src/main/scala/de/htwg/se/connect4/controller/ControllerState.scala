@@ -6,6 +6,8 @@ abstract class ControllerState {
 
   def handle(input: String, board: Board): String
 
+  def welcomeString(): String
+
   def nextState(): ControllerState
 
 }

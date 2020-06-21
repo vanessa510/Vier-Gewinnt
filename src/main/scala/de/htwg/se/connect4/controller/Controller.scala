@@ -5,7 +5,7 @@ import de.htwg.se.connect4.util.{Observable, UndoManager}
 
 class Controller(var board: Board, var players: List[Player]) extends Observable {
 
-  var state: ControllerState = InGameState(this)
+  var state: ControllerState = InitializationState(this)
   var currentPlayerIndex: Int = 0
   private val undoManager = new UndoManager
 
@@ -42,6 +42,7 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
     state = state.nextState()
     notifyObservers
     state.handle("", board)
+    state.welcomeString()
   }
 
   def playerWin(row: Int, col: Int): Boolean = {
@@ -62,7 +63,9 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
   def addPlayer(input: String): String = {
     if (players.isEmpty) { players = players ::: Player(input, Color.RED) :: Nil; return "Added Player 1" }
-    else players = players ::: Player(input, Color.YELLOW) :: Nil; "Added Player 2"
+    else if (players.size < 2) { players = players ::: Player(input, Color.YELLOW) :: Nil;
+       triggerNextStateAndEvaluateInput }
+    else  triggerNextStateAndEvaluateInput
   }
 
   def createNewBoard(rows: Int, cols: Int): String = {

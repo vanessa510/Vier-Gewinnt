@@ -1,7 +1,7 @@
 package de.htwg.se.connect4.aview
 
 
-import de.htwg.se.connect4.controller.Controller
+import de.htwg.se.connect4.controller.{Controller, InGameState, InitializationState}
 import de.htwg.se.connect4.model.Board
 import de.htwg.se.connect4.util.Observer
 
@@ -25,6 +25,7 @@ class Tui(controller: Controller) extends Observer {
     }
   }
 
-  override def update: Unit = println(controller.boardToString)
+  override def update: Unit = if (controller.state == InitializationState(controller)) println(controller.state.welcomeString())
+  else println(controller.boardToString)
 
 }
