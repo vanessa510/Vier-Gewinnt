@@ -77,7 +77,7 @@ case class Board(cells: Matrix[Cell]) {
   private def checkDiagonalLeft(row: Int, col: Int, playerColor: Color): Boolean = {
     var rowCounter = row
     var colCounter = col
-    while (colCounter > 0 && rowCounter < sizeOfRows) {
+    while (colCounter > 0 && rowCounter < sizeOfRows - 1) {
       rowCounter += 1
       colCounter -= 1
     }

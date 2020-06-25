@@ -20,7 +20,7 @@ class PlayerWinStateSpec extends WordSpec with Matchers {
     }
 
     "trigger next state" in {
-      controller.state.nextState() shouldBe GameOverState(controller)
+      controller.state.nextState() shouldBe InGameState(controller)
     }
 
 
