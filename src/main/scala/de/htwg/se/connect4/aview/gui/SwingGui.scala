@@ -59,6 +59,7 @@ class SwingGui(controller: Controller) extends Frame with Observer {
     }
 
     redraw
+    repaint()
   }
 
 
@@ -126,9 +127,6 @@ class SwingGui(controller: Controller) extends Frame with Observer {
     else statusLine.text = controller.getString
 
   repaint()
-
-
-  contents = welcomePanel
 
   visible = true
 

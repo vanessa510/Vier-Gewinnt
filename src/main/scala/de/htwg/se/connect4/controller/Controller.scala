@@ -53,8 +53,9 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
   def playerWin(row: Int, col: Int): Boolean = {
     val matchInCols = board.checkCols(col, players(currentPlayerIndex).color)
     val matchInRows = board.checkRow(row, players(currentPlayerIndex).color)
+    val matchDiagonal = board.checkDiagonal(row, col, players(currentPlayerIndex).color)
 
-    matchInCols || matchInRows
+    matchInCols || matchInRows || matchDiagonal
   }
 
   def playersHaveNoPiecesLeft: Boolean = if (players.head.piecesLeft == 0 && players(1).piecesLeft == 0) true else false

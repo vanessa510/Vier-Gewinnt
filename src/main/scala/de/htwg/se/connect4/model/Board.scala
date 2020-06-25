@@ -77,18 +77,18 @@ case class Board(cells: Matrix[Cell]) {
   private def checkDiagonalLeft(row: Int, col: Int, playerColor: Color): Boolean = {
     var rowCounter = row
     var colCounter = col
-    while (rowCounter > 0 && colCounter < sizeOfCols) {
-      rowCounter -= 1
-      colCounter += 1
+    while (colCounter > 0 && rowCounter < sizeOfRows) {
+      rowCounter += 1
+      colCounter -= 1
     }
 
     var counter = 0
-    while (rowCounter < sizeOfRows && colCounter >= 0) {
+    while (colCounter < sizeOfCols && rowCounter >= 0) {
       val color = cell(rowCounter, colCounter).color
 
       if (color.nonEmpty && color.get.equals(playerColor)) counter += 1 else counter = 0
-      rowCounter += 1
-      colCounter -= 1
+      rowCounter -= 1
+      colCounter += 1
     }
 
     if (counter == 4) true else false
