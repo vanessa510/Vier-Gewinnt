@@ -23,7 +23,7 @@ class CellPanel(row: Int, col: Int, controller: Controller) extends FlowPanel {
 
   val cell = new BoxPanel(Orientation.Vertical) {
     background = cellColor(row, col)
-    preferredSize = new Dimension(51, 51)
+    preferredSize = new Dimension(100, 100)
     border = Swing.BeveledBorder(Swing.Raised)
 
     listenTo(mouse.clicks)

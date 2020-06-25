@@ -5,7 +5,7 @@ case class PlayerWinState(controller: Controller, name: String) extends Controll
 
   override def handle(input: String, board: Board): String = ""
 
-  override def nextState(): ControllerState = GameOverState(controller)
+  override def nextState(): ControllerState = InGameState(controller)
 
   override def getString(): String = "Congratulations! Player " + name + " You win."
 }

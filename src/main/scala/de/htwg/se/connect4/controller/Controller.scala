@@ -29,12 +29,12 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
       players = players.updated(currentPlayerIndex, players(currentPlayerIndex).setPiece())
 
       if (playerWin(row, col)) {
-        triggerNextStateAndEvaluateInput;
+        triggerNextStateAndEvaluateInput
         return ""
       }
 
       if (playersHaveNoPiecesLeft) {
-        triggerNextStateAndEvaluateInput;
+        triggerNextStateAndEvaluateInput
         return ""
       }
 
@@ -74,7 +74,7 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
       players = players ::: Player(input, Color.YELLOW) :: Nil
       triggerNextStateAndEvaluateInput
     }
-    else triggerNextStateAndEvaluateInput;
+    else triggerNextStateAndEvaluateInput
     ""
   }
 
@@ -85,8 +85,8 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
     newPlayers = newPlayers ::: players.head.copy(piecesLeft = 21) :: Nil
     newPlayers = newPlayers ::: players(1).copy(piecesLeft = 21) :: Nil
     players = newPlayers
-    notifyObservers
     state = InGameState(this)
+    notifyObservers
     "created new Board \n" + getPlayerDemandString
   }
 

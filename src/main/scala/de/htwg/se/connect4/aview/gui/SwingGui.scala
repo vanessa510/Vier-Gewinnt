@@ -30,6 +30,8 @@ class SwingGui(controller: Controller) extends Frame with Observer {
 
     listenTo(nextPlayerButton)
     listenTo(nextPanelButton)
+    centerOnScreen()
+    preferredSize = new Dimension(300, 100)
 
     contents += new BoxPanel(Orientation.Vertical) {
       contents += nameTextField
@@ -41,7 +43,7 @@ class SwingGui(controller: Controller) extends Frame with Observer {
     }
 
     reactions += {
-      case ButtonClicked(`nextPlayerButton`) => controller.handle(nameTextField.text, controller.board);
+      case ButtonClicked(`nextPlayerButton`) => controller.handle(nameTextField.text, controller.board)
         contents.clear
         contents += nameTextField
         contents += nextPanelButton
@@ -73,7 +75,8 @@ class SwingGui(controller: Controller) extends Frame with Observer {
       contents += cellPanel
 
       listenTo(cellPanel)
-
+      centerOnScreen()
+      preferredSize = new Dimension(900, 700)
 
     }
   }
@@ -83,6 +86,7 @@ class SwingGui(controller: Controller) extends Frame with Observer {
       mnemonic = Key.F
       contents += new MenuItem(Action("New") {
         controller.createNewBoard(controller.sizeOfRows, controller.sizeOfCols)
+        redraw
       })
       contents += new MenuItem(Action("Quit") {
         System.exit(0)
@@ -113,7 +117,11 @@ class SwingGui(controller: Controller) extends Frame with Observer {
     repaint
   }
 
-  def updateStatusLine =
+  def updatePanel: Unit = {
+    if (controller.state.equals(InGameState(controller))) changePanel else contents = welcomePanel
+  }
+
+  def updateStatusLine: Unit  =
     if (controller.state.equals(InGameState(controller))) statusLine.text = controller.getPlayerDemandString
     else statusLine.text = controller.getString
 
@@ -124,6 +132,6 @@ class SwingGui(controller: Controller) extends Frame with Observer {
 
   visible = true
 
-  override def update: Unit = updateStatusLine
+  override def update: Unit = {updateStatusLine; updatePanel}
 
 }
