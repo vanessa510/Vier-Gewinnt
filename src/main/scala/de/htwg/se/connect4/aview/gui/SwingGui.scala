@@ -14,12 +14,16 @@ class SwingGui(controller: Controller) extends Frame with Observer {
   title = "Connect 4"
 
   var cells = Array.ofDim[CellPanel](controller.sizeOfRows, controller.sizeOfCols)
-  val statusLine = new Label(controller.getString)
+  val statusLine = {
+    //preferredSize = new Dimension(900, 100)
+    new Label(controller.getString)
+  }
 
 
   def welcomePanel = new BoxPanel(Orientation.Vertical) {
     val nameTextField = new TextField() {
       listenTo(keys)
+      maximumSize = new Dimension(500, 100)
       reactions += {
         case KeyPressed(_, Key.Enter, _, _) => controller.addPlayer(text)
       }
@@ -31,7 +35,6 @@ class SwingGui(controller: Controller) extends Frame with Observer {
     listenTo(nextPlayerButton)
     listenTo(nextPanelButton)
     centerOnScreen()
-    preferredSize = new Dimension(300, 100)
 
     contents += new BoxPanel(Orientation.Vertical) {
       contents += nameTextField
@@ -45,9 +48,17 @@ class SwingGui(controller: Controller) extends Frame with Observer {
     reactions += {
       case ButtonClicked(`nextPlayerButton`) => controller.handle(nameTextField.text, controller.board)
         contents.clear
-        contents += nameTextField
-        contents += nextPanelButton
-        repaint()
+        contents += new BoxPanel(Orientation.Vertical) {
+          contents += nameTextField
+          contents += statusLine
+        }
+
+        contents += new BoxPanel(Orientation.Horizontal) {
+          contents += nextPanelButton
+        }
+
+        repaint
+
       case ButtonClicked(`nextPanelButton`) => controller.handle(nameTextField.text, controller.board); changePanel
     }
   }
@@ -77,7 +88,7 @@ class SwingGui(controller: Controller) extends Frame with Observer {
 
       listenTo(cellPanel)
       centerOnScreen()
-      preferredSize = new Dimension(900, 700)
+      preferredSize = new Dimension(900, 500)
 
     }
   }
@@ -87,7 +98,6 @@ class SwingGui(controller: Controller) extends Frame with Observer {
       mnemonic = Key.F
       contents += new MenuItem(Action("New") {
         controller.createNewBoard(controller.sizeOfRows, controller.sizeOfCols)
-        redraw
       })
       contents += new MenuItem(Action("Quit") {
         System.exit(0)
@@ -97,11 +107,9 @@ class SwingGui(controller: Controller) extends Frame with Observer {
       mnemonic = Key.E
       contents += new MenuItem(Action("Undo") {
         controller.undo
-        redraw
       })
       contents += new MenuItem(Action("Redo") {
         controller.redo
-        redraw
       })
     }
   }
