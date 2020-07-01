@@ -1,8 +1,9 @@
 package de.htwg.se.connect4.controller.controllerComponent
 
 import de.htwg.se.connect4.model.{Board, Cell}
+import de.htwg.se.connect4.util.Observable
 
-trait ControllerInterface {
+trait ControllerInterface extends Observable {
 
   def getString: String
 
@@ -42,5 +43,8 @@ trait ControllerInterface {
 
   def cell(row: Int, col: Int): Cell
 
+  def getCell(row: Int, col: Int): Cell
+
+  def getBoard: Board
 
 }

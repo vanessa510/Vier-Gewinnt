@@ -117,4 +117,8 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
   def cell(row: Int, col: Int): Cell = board.cell(row, col)
 
+  def getCell(row: Int, col: Int): Cell = board.cell(row, col)
+
+  def getBoard: Board = board
+
 }

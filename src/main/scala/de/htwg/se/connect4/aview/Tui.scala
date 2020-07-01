@@ -1,10 +1,10 @@
 package de.htwg.se.connect4.aview
 
-import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.Controller
+import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
 import de.htwg.se.connect4.model.Board
 import de.htwg.se.connect4.util.Observer
 
-class Tui(controller: Controller) extends Observer {
+class Tui(controller: ControllerInterface) extends Observer {
 
   val rows: Int = 6
   val cols: Int = 7
