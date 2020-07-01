@@ -1,16 +1,18 @@
+import com.google.inject.Guice
+import de.htwg.se.connect4.Connect4Module
 import de.htwg.se.connect4.aview.Tui
 import de.htwg.se.connect4.aview.gui.SwingGui
-import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.Controller
-import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, BoardSizeStrategy}
-import de.htwg.se.connect4.model.playerComponent.Player
+import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
+import de.htwg.se.connect4.model.boardComponent.BoardInterface
 
 import scala.io.StdIn.readLine
 
 object connect4 {
 
-  var board: Board = BoardSizeStrategy.execute((6, 7))
-  var players: List[Player] = Nil
-  val controller = new Controller(board, players)
+  val injector = Guice.createInjector(new Connect4Module)
+  var board = injector.getInstance(classOf[BoardInterface])
+
+  val controller = injector.getInstance(classOf[ControllerInterface])
   val tui = new Tui(controller)
   val gui = new SwingGui(controller)
 

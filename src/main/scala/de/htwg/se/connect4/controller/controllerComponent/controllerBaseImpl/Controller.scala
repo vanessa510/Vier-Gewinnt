@@ -1,5 +1,7 @@
 package de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl
 
+import com.google.inject.{Guice, Inject}
+import de.htwg.se.connect4.Connect4Module
 import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
 import de.htwg.se.connect4.model.boardComponent.BoardInterface
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{BoardSizeStrategy, Cell, Color}
@@ -7,7 +9,10 @@ import de.htwg.se.connect4.model.playerComponent
 import de.htwg.se.connect4.model.playerComponent.Player
 import de.htwg.se.connect4.util.{Observable, UndoManager}
 
-class Controller(var board: BoardInterface, var players: List[Player]) extends Observable with ControllerInterface {
+
+class Controller @Inject() (var board: BoardInterface, var players: List[Player]) extends Observable with ControllerInterface {
+
+  val injector = Guice.createInjector(new Connect4Module)
 
   var state: ControllerState = InitializationState(this)
   var currentPlayerIndex: Int = 0
