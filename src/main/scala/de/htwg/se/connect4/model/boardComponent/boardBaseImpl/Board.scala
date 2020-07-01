@@ -1,12 +1,13 @@
 package de.htwg.se.connect4.model.boardComponent.boardBaseImpl
 
 import Color.Color
+import com.google.inject.Inject
 import de.htwg.se.connect4.model.boardComponent.BoardInterface
 
 import scala.collection.mutable.ListBuffer
 
 
-case class Board(cells: Matrix[Cell]) extends BoardInterface {
+case class Board @Inject() (cells: Matrix[Cell]) extends BoardInterface {
 
   def this(sizeOfRows: Int, sizeOfCol: Int, isSet: Boolean) = this(new Matrix[Cell](sizeOfRows, sizeOfCol, Cell(isSet)))
 
