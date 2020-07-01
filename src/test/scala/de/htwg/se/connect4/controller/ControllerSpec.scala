@@ -1,5 +1,6 @@
 package de.htwg.se.connect4.controller
 
+import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.connect4.model.{Board, Color, Player}
 import org.scalatest.{Matchers, WordSpec}
 

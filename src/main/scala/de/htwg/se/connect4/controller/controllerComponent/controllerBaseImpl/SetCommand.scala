@@ -1,5 +1,4 @@
-package de.htwg.se.connect4.controller
-
+package de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl
 
 import de.htwg.se.connect4.model.{Color, Player}
 import de.htwg.se.connect4.util.Command

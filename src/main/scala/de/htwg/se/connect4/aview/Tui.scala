@@ -1,7 +1,6 @@
 package de.htwg.se.connect4.aview
 
-
-import de.htwg.se.connect4.controller.Controller
+import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.connect4.model.Board
 import de.htwg.se.connect4.util.Observer
 

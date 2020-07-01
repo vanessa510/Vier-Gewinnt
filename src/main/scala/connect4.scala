@@ -1,6 +1,6 @@
 import de.htwg.se.connect4.aview.Tui
 import de.htwg.se.connect4.aview.gui.SwingGui
-import de.htwg.se.connect4.controller.Controller
+import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.connect4.model.{Board, BoardSizeStrategy, Player}
 
 import scala.io.StdIn.readLine

@@ -1,6 +1,6 @@
 package de.htwg.se.connect4.aview.gui
 
-import de.htwg.se.connect4.controller.Controller
+import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.connect4.model.Color
 
 import scala.swing.event.MouseClicked
