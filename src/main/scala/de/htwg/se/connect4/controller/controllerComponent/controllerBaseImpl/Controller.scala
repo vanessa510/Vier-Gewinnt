@@ -1,9 +1,10 @@
 package de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl
 
+import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
 import de.htwg.se.connect4.model._
 import de.htwg.se.connect4.util.{Observable, UndoManager}
 
-class Controller(var board: Board, var players: List[Player]) extends Observable {
+class Controller(var board: Board, var players: List[Player]) extends Observable with ControllerInterface {
 
   var state: ControllerState = InitializationState(this)
   var currentPlayerIndex: Int = 0
@@ -44,7 +45,7 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
     }
   }
 
-  private def triggerNextStateAndEvaluateInput: Unit = {
+   def triggerNextStateAndEvaluateInput: Unit = {
     state = state.nextState()
     notifyObservers
 
