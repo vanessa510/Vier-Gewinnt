@@ -15,7 +15,6 @@ class SwingGui(controller: Controller) extends Frame with Observer {
 
   var cells = Array.ofDim[CellPanel](controller.sizeOfRows, controller.sizeOfCols)
   val statusLine = {
-    //preferredSize = new Dimension(900, 100)
     new Label(controller.getString)
   }
 
