@@ -3,7 +3,8 @@ package de.htwg.se.connect4.controller
 import de.htwg.se.connect4.aview.Tui
 import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.{Controller, InGameState, PlayerWinState}
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Color}
-import de.htwg.se.connect4.model.Player
+import de.htwg.se.connect4.model.playerComponent
+import de.htwg.se.connect4.model.playerComponent.Player
 import org.scalatest.{Matchers, WordSpec}
 
 class InGameStateSpec extends WordSpec with Matchers {
@@ -12,7 +13,7 @@ class InGameStateSpec extends WordSpec with Matchers {
 
     "gets integer input" should {
       val board = new Board(2, 3, false)
-      val players: List[Player] = Player("test1", Color.RED) :: Player("test2", Color.YELLOW) :: Nil
+      val players: List[Player] = playerComponent.Player("test1", Color.RED) :: playerComponent.Player("test2", Color.YELLOW) :: Nil
       val controller = new Controller(board, players)
       val tui = new Tui(controller)
       controller.state = InGameState(controller)
@@ -28,7 +29,7 @@ class InGameStateSpec extends WordSpec with Matchers {
 
     "gets no integer input " should {
       val board = new Board(2, 3, false)
-      val players: List[Player] = Player("test", Color.RED) :: Nil
+      val players: List[Player] = playerComponent.Player("test", Color.RED) :: Nil
       val controller = new Controller(board, players)
       val tui = new Tui(controller)
       controller.state = InGameState(controller)
@@ -42,7 +43,7 @@ class InGameStateSpec extends WordSpec with Matchers {
 
     "gets to many arguments" should {
       val board = new Board(2, 3, false)
-      val players: List[Player] = Player("test", Color.RED) :: Nil
+      val players: List[Player] = playerComponent.Player("test", Color.RED) :: Nil
       val controller = new Controller(board, players)
       val tui = new Tui(controller)
       controller.state = InGameState(controller)
@@ -55,7 +56,7 @@ class InGameStateSpec extends WordSpec with Matchers {
 
     "gets input out of board" should {
       val board = new Board(2, 3, false)
-      val players: List[Player] = Player("test", Color.RED) :: Nil
+      val players: List[Player] = playerComponent.Player("test", Color.RED) :: Nil
       val controller = new Controller(board, players)
       val tui = new Tui(controller)
       controller.state = InGameState(controller)

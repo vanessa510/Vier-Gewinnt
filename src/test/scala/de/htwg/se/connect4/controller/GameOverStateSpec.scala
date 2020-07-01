@@ -3,14 +3,15 @@ package de.htwg.se.connect4.controller
 import de.htwg.se.connect4.aview.Tui
 import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.{Controller, GameOverState, InGameState}
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Color}
-import de.htwg.se.connect4.model.Player
+import de.htwg.se.connect4.model.playerComponent
+import de.htwg.se.connect4.model.playerComponent.Player
 import org.scalatest.{Matchers, WordSpec}
 
 class GameOverStateSpec extends WordSpec with Matchers {
   "A Game Over State" should {
 
     val board = new Board(2, 3, false)
-    val players: List[Player] = Player("test1", Color.RED, piecesLeft = 1) :: Player("test2", Color.YELLOW, piecesLeft = 0) :: Nil
+    val players: List[Player] = playerComponent.Player("test1", Color.RED, piecesLeft = 1) :: playerComponent.Player("test2", Color.YELLOW, piecesLeft = 0) :: Nil
     val controller = new Controller(board, players)
     val tui = new Tui(controller)
     controller.state = InGameState(controller)
@@ -28,7 +29,7 @@ class GameOverStateSpec extends WordSpec with Matchers {
 
     "A Game Over State" should {
       val board = new Board(2, 3, false)
-      val players: List[Player] = Player("test1", Color.RED, piecesLeft = 0) :: Player("test2", Color.YELLOW, piecesLeft = 0) :: Nil
+      val players: List[Player] = playerComponent.Player("test1", Color.RED, piecesLeft = 0) :: playerComponent.Player("test2", Color.YELLOW, piecesLeft = 0) :: Nil
       val controller = new Controller(board, players)
       val tui = new Tui(controller)
 

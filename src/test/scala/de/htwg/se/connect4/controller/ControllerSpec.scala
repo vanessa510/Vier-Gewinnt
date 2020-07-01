@@ -2,7 +2,8 @@ package de.htwg.se.connect4.controller
 
 import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Color}
-import de.htwg.se.connect4.model.Player
+import de.htwg.se.connect4.model.playerComponent
+import de.htwg.se.connect4.model.playerComponent.Player
 import org.scalatest.{Matchers, WordSpec}
 
 class ControllerSpec extends WordSpec with Matchers {
@@ -10,7 +11,7 @@ class ControllerSpec extends WordSpec with Matchers {
   "A Controller is managing the game. A controller" should {
 
     val board = new Board(2, 3, false)
-    val players: List[Player] = Player("test1", Color.RED) :: Player("test2", Color.YELLOW) :: Nil
+    val players: List[Player] = playerComponent.Player("test1", Color.RED) :: playerComponent.Player("test2", Color.YELLOW) :: Nil
     val controller = new Controller(board, players)
 
 
@@ -70,7 +71,7 @@ class ControllerSpec extends WordSpec with Matchers {
       controller.addPlayer("test1")
       controller.addPlayer("test2")
 
-      val players: List[Player] = Player("test1", Color.RED) :: Player("test2", Color.YELLOW) :: Nil
+      val players: List[Player] = playerComponent.Player("test1", Color.RED) :: playerComponent.Player("test2", Color.YELLOW) :: Nil
 
       controller.players shouldBe players
 

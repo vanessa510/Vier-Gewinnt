@@ -1,11 +1,13 @@
 package de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl
 
 import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
-import de.htwg.se.connect4.model._
-import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, BoardSizeStrategy, Cell, Color}
+import de.htwg.se.connect4.model.boardComponent.BoardInterface
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{BoardSizeStrategy, Cell, Color}
+import de.htwg.se.connect4.model.playerComponent
+import de.htwg.se.connect4.model.playerComponent.Player
 import de.htwg.se.connect4.util.{Observable, UndoManager}
 
-class Controller(var board: Board, var players: List[Player]) extends Observable with ControllerInterface {
+class Controller(var board: BoardInterface, var players: List[Player]) extends Observable with ControllerInterface {
 
   var state: ControllerState = InitializationState(this)
   var currentPlayerIndex: Int = 0
@@ -14,7 +16,7 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
   def getString: String = state.getString()
 
 
-  def handle(input: String, board: Board): String = {
+  def handle(input: String, board: BoardInterface): String = {
     state.handle(input, board)
   }
 
@@ -46,7 +48,7 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
     }
   }
 
-   def triggerNextStateAndEvaluateInput: Unit = {
+  def triggerNextStateAndEvaluateInput: Unit = {
     state = state.nextState()
     notifyObservers
 
@@ -66,15 +68,15 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
   def getNextPlayerIndex: Int = if (currentPlayerIndex == 0) 1 else 0
 
 
-  def boardToString: String = board.getBoardAsString(board.cells)
+  def boardToString: String = board.getBoardAsString(board.getCells)
 
 
   def addPlayer(input: String): String = {
     if (players.isEmpty) {
-      players = players ::: Player(input, Color.RED) :: Nil
+      players = players ::: playerComponent.Player(input, Color.RED) :: Nil
     }
     else if (players.size < 2) {
-      players = players ::: Player(input, Color.YELLOW) :: Nil
+      players = players ::: playerComponent.Player(input, Color.YELLOW) :: Nil
       triggerNextStateAndEvaluateInput
     }
     else triggerNextStateAndEvaluateInput
@@ -120,7 +122,7 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
   def getCell(row: Int, col: Int): Cell = board.cell(row, col)
 
-  def getBoard: Board = board
+  def getBoard: BoardInterface = board
 
   def getState: ControllerState = state
 

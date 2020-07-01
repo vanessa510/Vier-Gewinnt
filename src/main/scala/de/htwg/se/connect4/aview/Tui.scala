@@ -1,7 +1,7 @@
 package de.htwg.se.connect4.aview
 
 import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
-import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.Board
+import de.htwg.se.connect4.model.boardComponent.BoardInterface
 import de.htwg.se.connect4.util.Observer
 
 class Tui(controller: ControllerInterface) extends Observer {
@@ -11,7 +11,7 @@ class Tui(controller: ControllerInterface) extends Observer {
 
   controller.add(this)
 
-  def processInputLine(input: String, board: Board): String = {
+  def processInputLine(input: String, board: BoardInterface): String = {
 
     input match {
       case "q" => "exit game"

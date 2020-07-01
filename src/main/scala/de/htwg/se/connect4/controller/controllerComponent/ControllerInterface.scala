@@ -1,8 +1,9 @@
 package de.htwg.se.connect4.controller.controllerComponent
 
 import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.ControllerState
-import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Cell}
-import de.htwg.se.connect4.model.Player
+import de.htwg.se.connect4.model.boardComponent.BoardInterface
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.Cell
+import de.htwg.se.connect4.model.playerComponent.Player
 import de.htwg.se.connect4.util.Observable
 
 trait ControllerInterface extends Observable {
@@ -11,7 +12,7 @@ trait ControllerInterface extends Observable {
 
   def getWelcomeString: String
 
-  def handle(input: String, board: Board): String
+  def handle(input: String, board: BoardInterface): String
 
   def set(row: Int, col: Int): String
 
@@ -47,7 +48,7 @@ trait ControllerInterface extends Observable {
 
   def getCell(row: Int, col: Int): Cell
 
-  def getBoard: Board
+  def getBoard: BoardInterface
 
   def getState: ControllerState
 

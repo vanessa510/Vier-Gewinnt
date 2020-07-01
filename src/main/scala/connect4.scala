@@ -2,7 +2,7 @@ import de.htwg.se.connect4.aview.Tui
 import de.htwg.se.connect4.aview.gui.SwingGui
 import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.Controller
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, BoardSizeStrategy}
-import de.htwg.se.connect4.model.Player
+import de.htwg.se.connect4.model.playerComponent.Player
 
 import scala.io.StdIn.readLine
 

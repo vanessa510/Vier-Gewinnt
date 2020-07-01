@@ -1,6 +1,7 @@
 package de.htwg.se.connect4.model
 
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.Color
+import de.htwg.se.connect4.model.playerComponent.Player
 import org.scalatest.{Matchers, WordSpec}
 
 class PlayerSpec extends WordSpec with Matchers {
@@ -15,7 +16,7 @@ class PlayerSpec extends WordSpec with Matchers {
     }
 
     "has a name and it" should {
-      val player = Player("Player1", Color.RED)
+      val player = playerComponent.Player("Player1", Color.RED)
 
       "be printed" in {
         player.toString
@@ -23,7 +24,7 @@ class PlayerSpec extends WordSpec with Matchers {
     }
 
     "is playing" should {
-      val player = Player("Player1", Color.RED)
+      val player = playerComponent.Player("Player1", Color.RED)
 
       "set pieces and reduce amount of left pieces" in {
         val newPlayer = player.setPiece()

@@ -2,7 +2,8 @@ package de.htwg.se.connect4.aview
 
 import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.{Controller, InGameState}
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Color}
-import de.htwg.se.connect4.model.Player
+import de.htwg.se.connect4.model.playerComponent
+import de.htwg.se.connect4.model.playerComponent.Player
 import org.scalatest.{Matchers, WordSpec}
 
 class TuiSpec extends WordSpec with Matchers {
@@ -14,7 +15,7 @@ class TuiSpec extends WordSpec with Matchers {
     "gets input to create new Board with 'n' " should {
 
       val board = new Board(2, 3, false)
-      val players: List[Player] = Player("test", Color.RED) :: Player("test2", Color.YELLOW) :: Nil
+      val players: List[Player] = playerComponent.Player("test", Color.RED) :: playerComponent.Player("test2", Color.YELLOW) :: Nil
       val controller = new Controller(board, players)
       val tui = new Tui(controller)
 
@@ -29,7 +30,7 @@ class TuiSpec extends WordSpec with Matchers {
 
   "gets 'q' input" should {
     val board = new Board(2, 3, false)
-    val players: List[Player] = Player("test", Color.RED) :: Nil
+    val players: List[Player] = playerComponent.Player("test", Color.RED) :: Nil
     val controller = new Controller(board, players)
     val tui = new Tui(controller)
 
@@ -40,7 +41,7 @@ class TuiSpec extends WordSpec with Matchers {
 
   "gets 'u' input" should {
     val board = new Board(2, 3, false)
-    val players: List[Player] = Player("test", Color.RED) :: Player("test2", Color.YELLOW) :: Nil
+    val players: List[Player] = playerComponent.Player("test", Color.RED) :: playerComponent.Player("test2", Color.YELLOW) :: Nil
     val controller = new Controller(board, players)
     val tui = new Tui(controller)
     controller.state = InGameState(controller)

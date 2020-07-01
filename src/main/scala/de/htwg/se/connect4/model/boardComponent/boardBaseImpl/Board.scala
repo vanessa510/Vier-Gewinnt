@@ -123,6 +123,8 @@ case class Board(cells: Matrix[Cell]) extends BoardInterface {
 
     returnString
   }
+
+  def getCells: Matrix[Cell] = cells
 }
 
 
