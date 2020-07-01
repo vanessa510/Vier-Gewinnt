@@ -1,7 +1,7 @@
 package de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl
 
 import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
-import de.htwg.se.connect4.model.Board
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.Board
 
 import scala.util.{Failure, Success, Try}
 

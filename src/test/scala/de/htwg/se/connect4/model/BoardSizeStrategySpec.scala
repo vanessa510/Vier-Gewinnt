@@ -1,5 +1,6 @@
 package de.htwg.se.connect4.model
 
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.BoardSizeStrategy
 import org.scalatest.{Matchers, WordSpec}
 
 class BoardSizeStrategySpec extends WordSpec with Matchers {

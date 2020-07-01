@@ -1,5 +1,6 @@
 package de.htwg.se.connect4.model
 
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Cell, Color}
 import org.scalatest.{Matchers, WordSpec}
 
 class CellSpec extends WordSpec with Matchers {

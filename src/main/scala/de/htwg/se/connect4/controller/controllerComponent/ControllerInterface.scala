@@ -1,7 +1,8 @@
 package de.htwg.se.connect4.controller.controllerComponent
 
 import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.ControllerState
-import de.htwg.se.connect4.model.{Board, Cell, Player}
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Cell}
+import de.htwg.se.connect4.model.Player
 import de.htwg.se.connect4.util.Observable
 
 trait ControllerInterface extends Observable {

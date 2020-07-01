@@ -1,7 +1,7 @@
 package de.htwg.se.connect4.aview
 
 import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
-import de.htwg.se.connect4.model.Board
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.Board
 import de.htwg.se.connect4.util.Observer
 
 class Tui(controller: ControllerInterface) extends Observer {

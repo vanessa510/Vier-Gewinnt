@@ -1,5 +1,7 @@
 package de.htwg.se.connect4.model
 
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Cell, Color}
 import org.scalatest.{Matchers, WordSpec}
 
 class SetSpec extends WordSpec with Matchers {
@@ -7,7 +9,7 @@ class SetSpec extends WordSpec with Matchers {
   "A set represents a row or column of cells" when {
 
     "a set with empty cells is created" should {
-      val set = Set(Vector[Cell](Cell(false), Cell(false)))
+      val set = boardBaseImpl.Set(Vector[Cell](Cell(false), Cell(false)))
 
       "with empty cells" in {
         set.cells(0) should be(Cell(false))
@@ -16,7 +18,7 @@ class SetSpec extends WordSpec with Matchers {
     }
 
     "a set with one cell set is created" should {
-      val set = Set(Vector[Cell](Cell(true, Some(Color.RED)), Cell(false)))
+      val set = boardBaseImpl.Set(Vector[Cell](Cell(true, Some(Color.RED)), Cell(false)))
 
       "contain a cell with value" in {
         set.cells(0).isSet should be(true)

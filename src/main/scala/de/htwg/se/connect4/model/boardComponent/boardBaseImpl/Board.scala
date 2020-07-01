@@ -1,6 +1,6 @@
-package de.htwg.se.connect4.model
+package de.htwg.se.connect4.model.boardComponent.boardBaseImpl
 
-import de.htwg.se.connect4.model.Color.Color
+import Color.Color
 
 import scala.collection.mutable.ListBuffer
 

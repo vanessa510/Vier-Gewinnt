@@ -1,6 +1,6 @@
 package de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl
 
-import de.htwg.se.connect4.model.Board
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.Board
 
 abstract class ControllerState {
 

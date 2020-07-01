@@ -1,4 +1,4 @@
-package de.htwg.se.connect4.model
+package de.htwg.se.connect4.model.boardComponent.boardBaseImpl
 
 object Color extends Enumeration {
 

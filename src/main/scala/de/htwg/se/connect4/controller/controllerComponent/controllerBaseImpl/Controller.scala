@@ -2,6 +2,7 @@ package de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl
 
 import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
 import de.htwg.se.connect4.model._
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, BoardSizeStrategy, Cell, Color}
 import de.htwg.se.connect4.util.{Observable, UndoManager}
 
 class Controller(var board: Board, var players: List[Player]) extends Observable with ControllerInterface {

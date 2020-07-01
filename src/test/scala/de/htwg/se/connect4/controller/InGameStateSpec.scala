@@ -2,7 +2,8 @@ package de.htwg.se.connect4.controller
 
 import de.htwg.se.connect4.aview.Tui
 import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.{Controller, InGameState, PlayerWinState}
-import de.htwg.se.connect4.model.{Board, Color, Player}
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Color}
+import de.htwg.se.connect4.model.Player
 import org.scalatest.{Matchers, WordSpec}
 
 class InGameStateSpec extends WordSpec with Matchers {

@@ -1,6 +1,7 @@
 package de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl
 
-import de.htwg.se.connect4.model.{Color, Player}
+import de.htwg.se.connect4.model.Player
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.Color
 import de.htwg.se.connect4.util.Command
 
 class SetCommand(row: Int, col: Int, currentPlayer: Player, controller: Controller, isSet: Boolean) extends Command {

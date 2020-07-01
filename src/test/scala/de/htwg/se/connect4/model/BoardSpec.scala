@@ -1,6 +1,8 @@
 package de.htwg.se.connect4.model
 
 
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Cell, Color, Matrix}
 import org.scalatest.{Matchers, WordSpec}
 
 
@@ -37,8 +39,8 @@ class BoardSpec extends WordSpec with Matchers {
         val board = new Board(2, 3, false)
 
         "return requested cols and rows" in {
-          board.row(0) should be(Set(Vector.fill(3)(Cell(false))))
-          board.col(2) should be(Set(Vector.fill(2)(Cell(false))))
+          board.row(0) should be(boardBaseImpl.Set(Vector.fill(3)(Cell(false))))
+          board.col(2) should be(boardBaseImpl.Set(Vector.fill(2)(Cell(false))))
 
         }
 

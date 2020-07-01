@@ -1,7 +1,7 @@
 package de.htwg.se.connect4.aview.gui
 
 import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
-import de.htwg.se.connect4.model.Color
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.Color
 
 import scala.swing.event.MouseClicked
 import scala.swing.{BoxPanel, Color, Dimension, FlowPanel, Orientation, Swing}
