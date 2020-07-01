@@ -1,10 +1,11 @@
 package de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl
 
+import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
 import de.htwg.se.connect4.model.Board
 
 import scala.util.{Failure, Success, Try}
 
-case class InGameState(controller: Controller) extends ControllerState {
+case class InGameState(controller: ControllerInterface) extends ControllerState {
 
   override def handle(input: String, board: Board): String = evaluateInput(input, board)
 
@@ -29,7 +30,7 @@ case class InGameState(controller: Controller) extends ControllerState {
 
   override def nextState(): ControllerState =
     if (controller.playersHaveNoPiecesLeft) GameOverState(controller)
-    else PlayerWinState(controller, controller.players(controller.currentPlayerIndex).playerName)
+    else PlayerWinState(controller, controller.getPlayers(controller.getCurrentPlayerIndex).playerName)
 
   override def getString(): String =  controller.boardToString + "\n" + controller.getPlayerDemandString
 }

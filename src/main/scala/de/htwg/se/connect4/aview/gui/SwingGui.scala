@@ -1,6 +1,7 @@
 package de.htwg.se.connect4.aview.gui
 
-import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.{Controller, InGameState}
+import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
+import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.InGameState
 import de.htwg.se.connect4.util.Observer
 
 import scala.swing.Swing.LineBorder
@@ -8,7 +9,7 @@ import scala.swing._
 import scala.swing.event.{ButtonClicked, Key, KeyPressed}
 
 
-class SwingGui(controller: Controller) extends Frame with Observer {
+class SwingGui(controller: ControllerInterface) extends Frame with Observer {
 
   controller.add(this)
   title = "Connect 4"
@@ -45,7 +46,7 @@ class SwingGui(controller: Controller) extends Frame with Observer {
     }
 
     reactions += {
-      case ButtonClicked(`nextPlayerButton`) => controller.handle(nameTextField.text, controller.board)
+      case ButtonClicked(`nextPlayerButton`) => controller.handle(nameTextField.text, controller.getBoard)
         contents.clear
         contents += new BoxPanel(Orientation.Vertical) {
           contents += nameTextField
@@ -58,7 +59,7 @@ class SwingGui(controller: Controller) extends Frame with Observer {
 
         repaint
 
-      case ButtonClicked(`nextPanelButton`) => controller.handle(nameTextField.text, controller.board); changePanel
+      case ButtonClicked(`nextPanelButton`) => controller.handle(nameTextField.text, controller.getBoard); changePanel
     }
   }
 
@@ -126,17 +127,19 @@ class SwingGui(controller: Controller) extends Frame with Observer {
   }
 
   def updatePanel: Unit = {
-    if (controller.state.equals(InGameState(controller))) changePanel else contents = welcomePanel
+    if (controller.getState.equals(InGameState(controller))) changePanel else contents = welcomePanel
   }
 
-  def updateStatusLine: Unit  =
-    if (controller.state.equals(InGameState(controller))) statusLine.text = controller.getPlayerDemandString
+  def updateStatusLine: Unit =
+    if (controller.getState.equals(InGameState(controller))) statusLine.text = controller.getPlayerDemandString
     else statusLine.text = controller.getString
 
   repaint()
 
   visible = true
 
-  override def update: Unit = {updateStatusLine; updatePanel}
+  override def update: Unit = {
+    updateStatusLine; updatePanel
+  }
 
 }

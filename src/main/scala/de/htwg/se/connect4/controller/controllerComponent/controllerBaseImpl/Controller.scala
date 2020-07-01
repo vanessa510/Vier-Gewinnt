@@ -121,4 +121,10 @@ class Controller(var board: Board, var players: List[Player]) extends Observable
 
   def getBoard: Board = board
 
+  def getState: ControllerState = state
+
+  def getPlayers: List[Player] = players
+
+  def getCurrentPlayerIndex: Int = currentPlayerIndex
+
 }
