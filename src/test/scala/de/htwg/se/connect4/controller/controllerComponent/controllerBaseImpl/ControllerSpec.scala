@@ -1,7 +1,7 @@
-package de.htwg.se.connect4.controller
+package de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl
 
-import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.Controller
-import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Color}
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Cell, Color}
 import de.htwg.se.connect4.model.playerComponent
 import de.htwg.se.connect4.model.playerComponent.Player
 import org.scalatest.{Matchers, WordSpec}
@@ -144,5 +144,32 @@ class ControllerSpec extends WordSpec with Matchers {
       controller.redo should startWith("Redo Step.")
     }
   }
+
+  "Controller" should {
+    var board = new Board(2, 4, false)
+    val players: List[Player] = Player("test1", Color.RED, 1) :: Player("test2", Color.YELLOW, 0) :: Nil
+    val controller = new Controller(board, players)
+
+    "not add another player" in {
+      controller.addPlayer("test3") should startWith("")
+    }
+  }
+
+  "Controller" should {
+    var board = new Board(2, 4, false)
+    val players: List[Player] = Player("test1", Color.RED, 1) :: Player("test2", Color.YELLOW, 0) :: Nil
+    val controller = new Controller(board, players)
+
+    "return information of board" in {
+      controller.sizeOfRows shouldBe 2
+      controller.sizeOfCols shouldBe 4
+
+      controller.isSet(0,0) shouldBe false
+      controller.cell(0,0) shouldBe a [Cell]
+      controller.getBoard shouldBe a [Board]
+      controller.getState shouldBe a [ControllerState]
+
+    }
+   }
 
 }

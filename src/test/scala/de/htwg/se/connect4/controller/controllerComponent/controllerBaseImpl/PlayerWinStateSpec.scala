@@ -1,7 +1,6 @@
-package de.htwg.se.connect4.controller
+package de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl
 
 import de.htwg.se.connect4.aview.Tui
-import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.{Controller, InGameState, PlayerWinState}
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Color}
 import de.htwg.se.connect4.model.playerComponent
 import de.htwg.se.connect4.model.playerComponent.Player
@@ -24,6 +23,10 @@ class PlayerWinStateSpec extends WordSpec with Matchers {
 
     "trigger next state" in {
       controller.state.nextState() shouldBe InGameState(controller)
+    }
+
+    "return empty string" in {
+      controller.handle("", board) should startWith("")
     }
 
 
