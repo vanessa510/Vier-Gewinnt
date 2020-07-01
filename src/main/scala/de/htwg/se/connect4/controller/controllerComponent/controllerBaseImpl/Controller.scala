@@ -1,6 +1,5 @@
 package de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl
 
-import de.htwg.se.connect4.controller.{ControllerState, InGameState, InitializationState}
 import de.htwg.se.connect4.model._
 import de.htwg.se.connect4.util.{Observable, UndoManager}
 

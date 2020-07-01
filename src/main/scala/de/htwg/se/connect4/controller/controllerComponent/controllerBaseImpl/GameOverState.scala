@@ -1,5 +1,5 @@
-package de.htwg.se.connect4.controller
-import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.Controller
+package de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl
+
 import de.htwg.se.connect4.model.Board
 
 case class GameOverState(controller: Controller) extends ControllerState {

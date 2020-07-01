@@ -1,7 +1,6 @@
 package de.htwg.se.connect4.aview.gui
 
-import de.htwg.se.connect4.controller.InGameState
-import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.Controller
+import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.{Controller, InGameState}
 import de.htwg.se.connect4.util.Observer
 
 import scala.swing.Swing.LineBorder
