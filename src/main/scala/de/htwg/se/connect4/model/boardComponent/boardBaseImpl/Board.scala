@@ -135,3 +135,9 @@ case class Creator() {
   }
 }
 
+object Board {
+  import play.api.libs.json._
+  implicit val gridWrites = Json.writes[Board]
+  implicit val gridReads = Json.reads[Board]
+}
+
