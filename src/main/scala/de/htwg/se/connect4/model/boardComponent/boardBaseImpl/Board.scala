@@ -21,15 +21,15 @@ case class Board @Inject() (cells: Matrix[Cell]) extends BoardInterface {
 
   def row(row: Int): Set = Set(cells.rows(row))
 
-  def set(row: Int, col: Int, color: Color.Value, isSet: Boolean): Board = copy(cells.replaceCell(row, col, Cell(isSet, Some(color))))
+  def set(row: Int, col: Int, color: Color.Value, isSet: Boolean): Board = copy(cells.replaceCell(row, col, Cell(isSet, color)))
 
   def checkRow(row: Int, color: Color): Boolean = {
-    var pieces = new ListBuffer[Option[Color]]()
+    var pieces = new ListBuffer[Color]()
     for (col <- 0 until sizeOfCols) {
       pieces += cell(row, col).color
     }
     var counter = 0
-    for (Some(elem) <- pieces) {
+    for (elem <- pieces) {
       if (elem.equals(color)) counter += 1 else counter = 0
     }
 
@@ -37,12 +37,12 @@ case class Board @Inject() (cells: Matrix[Cell]) extends BoardInterface {
   }
 
   def checkCols(col: Int, color: Color): Boolean = {
-    var pieces = new ListBuffer[Option[Color]]()
+    var pieces = new ListBuffer[Color]()
     for (row <- 0 until sizeOfRows) {
       pieces += cell(row, col).color
     }
     var counter = 0
-    for (Some(elem) <- pieces) {
+    for (elem <- pieces) {
       if (elem.equals(color)) counter += 1 else counter = 0
     }
 
@@ -67,7 +67,7 @@ case class Board @Inject() (cells: Matrix[Cell]) extends BoardInterface {
     while (rowCounter < sizeOfRows && colCounter < sizeOfCols) {
       val color = cell(rowCounter, colCounter).color
 
-      if (color.nonEmpty && color.get.equals(playerColor)) counter += 1 else counter = 0
+      if (color.equals(Color.EMPTY) && color.equals(playerColor)) counter += 1 else counter = 0
       rowCounter += 1
       colCounter += 1
     }
@@ -88,7 +88,7 @@ case class Board @Inject() (cells: Matrix[Cell]) extends BoardInterface {
     while (colCounter < sizeOfCols && rowCounter >= 0) {
       val color = cell(rowCounter, colCounter).color
 
-      if (color.nonEmpty && color.get.equals(playerColor)) counter += 1 else counter = 0
+      if (color.equals(Color.EMPTY) && color.equals(playerColor)) counter += 1 else counter = 0
       rowCounter -= 1
       colCounter += 1
     }
@@ -111,9 +111,9 @@ case class Board @Inject() (cells: Matrix[Cell]) extends BoardInterface {
       if (col == 0) returnString += "\n" + oneLine + "\n"
       if (matrix.cell(row, col).isSet) {
         matrix.cell(row, col).color match {
-          case Some(Color.RED) => returnString += " r |"
-          case Some(Color.YELLOW) => returnString += " y |"
-          case Some(Color.EMPTY) => returnString += " - |"
+          case Color.RED => returnString += " r |"
+          case Color.YELLOW => returnString += " y |"
+          case Color.EMPTY => returnString += " - |"
 
 
         }

@@ -64,7 +64,7 @@ class BoardSpec extends WordSpec with Matchers {
       }
       "first piece from red player is set" should {
         val board = new Board(2, 3, false)
-        val newBoard = Board(board.cells.replaceCell(1, 1, Cell(true, Some(Color.RED))))
+        val newBoard = Board(board.cells.replaceCell(1, 1, Cell(true, Color.RED)))
         "print one cell set at second row and second col with red piece" in {
           val boardAsString = newBoard.getBoardAsString(newBoard.cells)
 
@@ -79,7 +79,7 @@ class BoardSpec extends WordSpec with Matchers {
 
       "first piece from yellow player is set" should {
         val board = new Board(2, 3, false)
-        val newBoard = Board(board.cells.replaceCell(1, 1, Cell(true, Some(Color.YELLOW))))
+        val newBoard = Board(board.cells.replaceCell(1, 1, Cell(true, Color.YELLOW)))
         "print one cell set at second row and second col with yellow piece" in {
           val boardAsString = newBoard.getBoardAsString(newBoard.cells)
 
@@ -94,7 +94,7 @@ class BoardSpec extends WordSpec with Matchers {
 
       "detect no color available" should {
         val board = new Board(2, 3, false)
-        val newBoard = Board(board.cells.replaceCell(1, 1, Cell(true, Some(Color.EMPTY))))
+        val newBoard = Board(board.cells.replaceCell(1, 1, Cell(true, Color.EMPTY)))
 
         "print cell with '-'" in {
           val boardAsString = newBoard.getBoardAsString(newBoard.cells)
@@ -110,10 +110,10 @@ class BoardSpec extends WordSpec with Matchers {
 
       "checks rows correctly if match found" should {
         var board = new Board(2, 4, false)
-        board = Board(board.cells.replaceCell(0, 0, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(0,1, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(0,2, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(0,3, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0, 0, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(0,1, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(0,2, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(0,3, Cell(true, Color.YELLOW)))
 
         "return true" in {
           board.checkRow(0, Color.YELLOW) shouldBe true
@@ -124,9 +124,9 @@ class BoardSpec extends WordSpec with Matchers {
 
       "check rows correctly if no match found" should {
         var board = new Board(2, 4, false)
-        board = Board(board.cells.replaceCell(0,1, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(0,2, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(0,3, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,1, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(0,2, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(0,3, Cell(true, Color.YELLOW)))
 
         "return false" in {
           board.checkRow(0, Color.YELLOW) shouldBe false
@@ -136,9 +136,9 @@ class BoardSpec extends WordSpec with Matchers {
 
       "check rows correctly" should {
         var board = new Board(2, 4, false)
-        board = Board(board.cells.replaceCell(0,0, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(0,2, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(0,3, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,0, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(0,2, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(0,3, Cell(true, Color.YELLOW)))
 
         "return false" in {
           board.checkRow(0, Color.YELLOW) shouldBe false
@@ -148,11 +148,11 @@ class BoardSpec extends WordSpec with Matchers {
 
       "check rows" should {
         var board = new Board(2, 6, false)
-        board = Board(board.cells.replaceCell(0,0, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(0,2, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(0,3, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(0,4, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(0,5, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,0, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(0,2, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(0,3, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(0,4, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(0,5, Cell(true, Color.YELLOW)))
 
         "retrun true" in {
           board.checkRow(0, Color.YELLOW) shouldBe true
@@ -161,10 +161,10 @@ class BoardSpec extends WordSpec with Matchers {
 
       "check columns" should {
         var board = new Board(4, 6, false)
-        board = Board(board.cells.replaceCell(0,2, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(1,2, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(2,2, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(3,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,2, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(1,2, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(2,2, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(3,2, Cell(true, Color.YELLOW)))
 
         "return true" in {
           board.checkCols(2, Color.YELLOW) shouldBe true
@@ -173,9 +173,9 @@ class BoardSpec extends WordSpec with Matchers {
 
       "check columns" should {
         var board = new Board(4, 6, false)
-        board = Board(board.cells.replaceCell(0,2, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(2,2, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(3,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,2, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(2,2, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(3,2, Cell(true, Color.YELLOW)))
 
         "return false" in {
           board.checkCols(2, Color.YELLOW) shouldBe false
@@ -184,10 +184,10 @@ class BoardSpec extends WordSpec with Matchers {
 
       "check diagonal right" should {
         var board = new Board(4,5,false)
-        board = Board(board.cells.replaceCell(0,1, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(1,2, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(2,3, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(3,4, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,1, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(1,2, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(2,3, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(3,4, Cell(true, Color.YELLOW)))
 
         "return true" in {
           board.checkDiagonal(2,3, Color.YELLOW) shouldBe true
@@ -197,9 +197,9 @@ class BoardSpec extends WordSpec with Matchers {
 
       "check diagonal right" should {
         var board = new Board(4, 6, false)
-        board = Board(board.cells.replaceCell(0,2, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(2,2, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(3,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,2, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(2,2, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(3,2, Cell(true, Color.YELLOW)))
 
         "return false" in {
           board.checkDiagonal(2,3, Color.YELLOW) shouldBe false
@@ -208,9 +208,9 @@ class BoardSpec extends WordSpec with Matchers {
 
       "check diagonal left" should {
         var board = new Board(4, 6, false)
-        board = Board(board.cells.replaceCell(1,4, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(2,3, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(3,2, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(1,4, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(2,3, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(3,2, Cell(true, Color.YELLOW)))
 
         "return false" in {
           board.checkDiagonal(2,3, Color.YELLOW) shouldBe false
@@ -219,10 +219,10 @@ class BoardSpec extends WordSpec with Matchers {
 
       "check diagonal left" should {
         var board = new Board(4, 5, false)
-        board = Board(board.cells.replaceCell(0,3, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(1,2, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(2,1, Cell(true, Some(Color.YELLOW))))
-        board = Board(board.cells.replaceCell(3,0, Cell(true, Some(Color.YELLOW))))
+        board = Board(board.cells.replaceCell(0,3, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(1,2, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(2,1, Cell(true, Color.YELLOW)))
+        board = Board(board.cells.replaceCell(3,0, Cell(true, Color.YELLOW)))
 
         "return true" in {
           board.checkDiagonal(1,2, Color.YELLOW) shouldBe true

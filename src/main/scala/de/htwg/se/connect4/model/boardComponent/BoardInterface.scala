@@ -32,5 +32,5 @@ trait BoardInterface {
 trait CellInterface {
   def isSet: Boolean
 
-  def color: Option[Color.Value]
+  def color: Color.Value
 }

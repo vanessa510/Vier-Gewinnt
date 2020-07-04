@@ -18,7 +18,7 @@ class SetSpec extends WordSpec with Matchers {
     }
 
     "a set with one cell set is created" should {
-      val set = boardBaseImpl.Set(Vector[Cell](Cell(true, Some(Color.RED)), Cell(false)))
+      val set = boardBaseImpl.Set(Vector[Cell](Cell(true, Color.RED), Cell(false)))
 
       "contain a cell with value" in {
         set.cells(0).isSet should be(true)

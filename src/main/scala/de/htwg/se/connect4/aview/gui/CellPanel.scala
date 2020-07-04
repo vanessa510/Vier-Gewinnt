@@ -13,7 +13,7 @@ class CellPanel(row: Int, col: Int, controller: ControllerInterface) extends Flo
 
   def cellColor(row: Int, col: Int): Color = {
     if (controller.getCell(row, col).isSet) {
-      if (controller.getCell(row, col).color.get == Color.YELLOW) cellColor = new Color(255, 255, 0)
+      if (controller.getCell(row, col).color == Color.YELLOW) cellColor = new Color(255, 255, 0)
       else cellColor = new Color(255, 0, 0)
     } else cellColor = new Color(255, 250, 250)
 
