@@ -10,5 +10,7 @@ case class InitializationState(controller: ControllerInterface) extends Controll
 
   override def nextState(): ControllerState = InGameState(controller)
 
-  override def getString(): String = controller.getWelcomeString
+  override def stateString(): String = controller.getWelcomeString
+
+  override def toString: String = "InitializationState"
 }

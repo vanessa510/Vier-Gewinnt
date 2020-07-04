@@ -4,12 +4,13 @@ import com.google.inject.{Guice, Inject}
 import de.htwg.se.connect4.Connect4Module
 import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
 import de.htwg.se.connect4.model.boardComponent.BoardInterface
-import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{BoardSizeStrategy, Cell, Color}
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, BoardSizeStrategy, Cell, Color}
 import de.htwg.se.connect4.model.fileIoComponent.FileIoInterface
 import de.htwg.se.connect4.model.playerComponent
 import de.htwg.se.connect4.model.playerComponent.Player
 import de.htwg.se.connect4.util.{Observable, UndoManager}
 import net.codingwell.scalaguice.InjectorExtensions._
+import play.api.libs.json.{JsPath, JsResult, JsValue, Json, Reads}
 
 
 class Controller @Inject()(var board: BoardInterface, var players: List[Player]) extends Observable with ControllerInterface {
@@ -21,7 +22,7 @@ class Controller @Inject()(var board: BoardInterface, var players: List[Player])
   var currentPlayerIndex: Int = 0
   private val undoManager = new UndoManager
 
-  def getString: String = state.getString()
+  def stateString: String = state.stateString()
 
 
   def handle(input: String, board: BoardInterface): String = {
@@ -139,8 +140,29 @@ class Controller @Inject()(var board: BoardInterface, var players: List[Player])
   def getCurrentPlayerIndex: Int = currentPlayerIndex
 
   override def save: String = {
-    fileIo.save(board); "saved"
+    val stateToSave = State(currentPlayerIndex, players, state.toString())
+    fileIo.save(board, stateToSave)
+    "saved"
   }
 
-  override def load: String = {board = fileIo.load; notifyObservers; "loaded"}
+  override def load: String = {
+
+    val (newBoard, stateToGet) = fileIo.load
+    board = newBoard
+    players = stateToGet.players
+    currentPlayerIndex = stateToGet.currentPlayerIndex
+
+    stateToGet.state match {
+      case "\"GameOverState\"" => state = GameOverState(this)
+      case "\"InitializationState\"" => InitializationState(this)
+      case "\"PlayerWinState\"" => PlayerWinState
+      case "\"InGameState\"" => InGameState(this)
+    }
+
+    notifyObservers; "loaded"
+  }
 }
+
+
+
+

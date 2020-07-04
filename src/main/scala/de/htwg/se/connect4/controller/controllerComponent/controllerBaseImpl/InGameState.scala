@@ -32,5 +32,7 @@ case class InGameState(controller: ControllerInterface) extends ControllerState 
     if (controller.playersHaveNoPiecesLeft) GameOverState(controller)
     else PlayerWinState(controller, controller.getPlayers(controller.getCurrentPlayerIndex).playerName)
 
-  override def getString(): String = controller.boardToString + "\n" + controller.getPlayerDemandString
+  override def stateString(): String = controller.boardToString + "\n" + controller.getPlayerDemandString
+
+  override def toString: String = "InGameState"
 }

@@ -9,6 +9,7 @@ object EnumRead {
       case JsString(s) => {
         try {
           JsSuccess(enum.withName(s))
+
         } catch {
           case _: NoSuchElementException => JsError(s"Enumeration expected of type: '${enum.getClass}', but it does not appear to contain the value: '$s'")
         }
@@ -16,6 +17,7 @@ object EnumRead {
       case _ => JsError("String value expected")
     }
   }
+
 }
 
 

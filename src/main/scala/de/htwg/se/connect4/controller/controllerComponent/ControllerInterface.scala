@@ -8,7 +8,7 @@ import de.htwg.se.connect4.util.Observable
 
 trait ControllerInterface extends Observable {
 
-  def getString: String
+  def stateString: String
 
   def getWelcomeString: String
 

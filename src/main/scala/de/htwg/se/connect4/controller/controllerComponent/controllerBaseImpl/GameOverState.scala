@@ -9,5 +9,7 @@ case class GameOverState(controller: ControllerInterface) extends ControllerStat
 
   override def nextState(): ControllerState = InGameState(controller)
 
-  override def getString(): String = "Game over. No pieces left. Press 'n' to start a new game."
+  override def stateString(): String = "Game over. No pieces left. Press 'n' to start a new game."
+
+  override def toString: String = "GameOverState"
 }

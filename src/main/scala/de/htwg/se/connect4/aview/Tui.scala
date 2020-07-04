@@ -26,6 +26,7 @@ class Tui(controller: ControllerInterface) extends Observer {
     }
   }
 
-  override def update: Unit = println(controller.getString)
+  override def update: Unit = println(controller.stateString)
+
 
 }

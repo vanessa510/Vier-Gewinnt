@@ -16,7 +16,7 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer {
 
   var cells = Array.ofDim[CellPanel](controller.sizeOfRows, controller.sizeOfCols)
   val statusLine = {
-    new Label(controller.getString)
+    new Label(controller.stateString)
   }
 
 
@@ -140,7 +140,7 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer {
 
   def updateStatusLine: Unit =
     if (controller.getState.equals(InGameState(controller))) statusLine.text = controller.getPlayerDemandString
-    else statusLine.text = controller.getString
+    else statusLine.text = controller.stateString
 
   repaint()
 

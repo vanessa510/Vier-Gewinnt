@@ -16,7 +16,7 @@ class InitializationStateSpec extends WordSpec with Matchers {
     controller.state = InitializationState(controller)
 
     "print welcome string" in {
-      controller.state.getString() should startWith("Welcome to connect 4. Please Enter your names.")
+      controller.state.stateString() should startWith("Welcome to connect 4. Please Enter your names.")
     }
 
     "set should add players" in {

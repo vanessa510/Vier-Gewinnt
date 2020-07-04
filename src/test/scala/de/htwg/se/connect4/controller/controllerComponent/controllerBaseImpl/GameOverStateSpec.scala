@@ -18,7 +18,7 @@ class GameOverStateSpec extends WordSpec with Matchers {
     "print out game over string and change state to in Game state" in {
       controller.handle("1 2", board)
 
-      controller.getString should startWith("Game over. No pieces left. Press 'n' to start a new game.")
+      controller.stateString should startWith("Game over. No pieces left. Press 'n' to start a new game.")
 
       tui.processInputLine("n", board)
 

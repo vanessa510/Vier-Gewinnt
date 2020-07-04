@@ -9,5 +9,7 @@ case class PlayerWinState(controller: ControllerInterface, name: String) extends
 
   override def nextState(): ControllerState = InGameState(controller)
 
-  override def getString(): String = "Congratulations! Player " + name + " You win."
+  override def stateString(): String = "Congratulations! Player " + name + " You win."
+
+  override def toString: String = "PlayerWinState"
 }
