@@ -111,6 +111,14 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer {
       contents += new MenuItem(Action("Redo") {
         controller.redo
       })
+
+      contents += new MenuItem(Action("Save") {
+        controller.save
+      })
+
+      contents += new MenuItem(Action("Load") {
+        controller.load
+      })
     }
   }
 
