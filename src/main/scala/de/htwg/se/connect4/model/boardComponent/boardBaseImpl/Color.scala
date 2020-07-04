@@ -23,7 +23,6 @@ object Color extends Enumeration {
   }
 
 
-
 }
 
 
