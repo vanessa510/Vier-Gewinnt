@@ -142,5 +142,5 @@ class Controller @Inject()(var board: BoardInterface, var players: List[Player])
     fileIo.save(board); "saved"
   }
 
-  override def load: String = {fileIo.load; "loaded"}
+  override def load: String = {board = fileIo.load; notifyObservers; "loaded"}
 }
