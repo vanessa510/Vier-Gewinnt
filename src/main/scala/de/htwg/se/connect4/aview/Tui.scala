@@ -18,6 +18,8 @@ class Tui(controller: ControllerInterface) extends Observer {
       case "n" => controller.createNewBoard(rows, cols)
       case "r" => controller.redo
       case "u" => controller.undo
+      case "s" => controller.save
+      case "l" => controller.load
 
       case _ => controller.handle(input, board)
 

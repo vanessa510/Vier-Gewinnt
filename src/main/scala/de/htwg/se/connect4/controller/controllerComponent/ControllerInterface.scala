@@ -14,6 +14,10 @@ trait ControllerInterface extends Observable {
 
   def handle(input: String, board: BoardInterface): String
 
+  def save: String
+
+  def load: String
+
   def set(row: Int, col: Int): String
 
   def triggerNextStateAndEvaluateInput: Unit

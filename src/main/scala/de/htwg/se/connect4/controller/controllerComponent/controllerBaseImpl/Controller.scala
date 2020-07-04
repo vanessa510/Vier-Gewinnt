@@ -5,14 +5,17 @@ import de.htwg.se.connect4.Connect4Module
 import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
 import de.htwg.se.connect4.model.boardComponent.BoardInterface
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{BoardSizeStrategy, Cell, Color}
+import de.htwg.se.connect4.model.fileIoComponent.FileIoInterface
 import de.htwg.se.connect4.model.playerComponent
 import de.htwg.se.connect4.model.playerComponent.Player
 import de.htwg.se.connect4.util.{Observable, UndoManager}
+import net.codingwell.scalaguice.InjectorExtensions._
 
 
-class Controller @Inject() (var board: BoardInterface, var players: List[Player]) extends Observable with ControllerInterface {
+class Controller @Inject()(var board: BoardInterface, var players: List[Player]) extends Observable with ControllerInterface {
 
   val injector = Guice.createInjector(new Connect4Module)
+  val fileIo = injector.instance[FileIoInterface]
 
   var state: ControllerState = InitializationState(this)
   var currentPlayerIndex: Int = 0
@@ -135,4 +138,9 @@ class Controller @Inject() (var board: BoardInterface, var players: List[Player]
 
   def getCurrentPlayerIndex: Int = currentPlayerIndex
 
+  override def save: String = {
+    fileIo.save(board); "saved"
+  }
+
+  override def load: String = {fileIo.load; "loaded"}
 }
