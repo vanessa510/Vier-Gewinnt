@@ -186,7 +186,32 @@ class ControllerSpec extends WordSpec with Matchers {
       controller.load should startWith("loaded")
     }
 
-
   }
+
+  "Controller" should {
+    var board = new Board(2, 4, false)
+    val players: List[Player] = Player("test1", Color.RED, 1) :: Player("test2", Color.YELLOW, 0) :: Nil
+    val controller = new Controller(board, players)
+
+    "set game Over state" in {
+      controller.setStateOfString("GameOverState")
+      controller.state shouldBe GameOverState(controller)
+    }
+
+    "set in game state" in {
+      controller.setStateOfString("InGameState")
+      controller.state shouldBe InGameState(controller)
+    }
+
+    "set initialization state" in {
+      controller.setStateOfString("InitializationState")
+      controller.state shouldBe InitializationState(controller)
+    }
+
+    "set Player Win state" in {
+      controller.setStateOfString("PlayerWinState")
+
+    }
+   }
 
 }

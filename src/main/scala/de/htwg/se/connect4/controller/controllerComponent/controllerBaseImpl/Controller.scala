@@ -151,18 +151,18 @@ class Controller @Inject()(var board: BoardInterface, var players: List[Player])
     players = loadedState.players
     currentPlayerIndex = loadedState.currentPlayerIndex
 
-    getState(loadedState.state)
+    setStateOfString(loadedState.state)
 
     notifyObservers
     "loaded"
   }
 
-  def getState(stateString: String) = {
+  def setStateOfString(stateString: String): Unit = {
     stateString match {
       case "GameOverState" => state = GameOverState(this)
       case "InitializationState" => state = InitializationState(this)
       case "PlayerWinState" => PlayerWinState
-      case "InGameState" => InGameState(this)
+      case "InGameState" => state = InGameState(this)
     }
   }
 }
