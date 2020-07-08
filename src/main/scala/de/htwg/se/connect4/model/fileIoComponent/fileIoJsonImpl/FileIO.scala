@@ -54,7 +54,7 @@ class FileIO extends FileIoInterface {
 
     }
 
-    val state = (json \ "state").get.toString()
+    val state = (json \ "state").as[String]
 
     val stateToLoad = new State(currentPlayerIndex, players, state)
 

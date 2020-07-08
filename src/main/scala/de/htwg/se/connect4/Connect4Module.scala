@@ -14,6 +14,6 @@ class Connect4Module extends AbstractModule with ScalaModule {
     bind[List[Player]].toInstance(Nil)
     bind[ControllerInterface].to[controller.controllerComponent.controllerBaseImpl.Controller]
 
-    bind[FileIoInterface].to[model.fileIoComponent.fileIoXmlImpl.FileIO]
+    bind[FileIoInterface].to[model.fileIoComponent.fileIoJsonImpl.FileIO]
   }
 }

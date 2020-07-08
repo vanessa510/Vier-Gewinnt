@@ -152,17 +152,13 @@ class Controller @Inject()(var board: BoardInterface, var players: List[Player])
     currentPlayerIndex = stateToGet.currentPlayerIndex
 
     stateToGet.state match {
-      case "\"GameOverState\""  => state = GameOverState(this)
       case "GameOverState" => state = GameOverState(this)
       case "InitializationState" => state = InitializationState(this)
       case "PlayerWinState" =>   PlayerWinState
-      case "\"InitializationState\"" => InitializationState(this)
-      case "\"PlayerWinState\""  => PlayerWinState
       case "InGameState" => InGameState(this)
-      case "\"InGameState\"" => InGameState(this)
     }
 
-    notifyObservers;
+    notifyObservers
     "loaded"
   }
 }
