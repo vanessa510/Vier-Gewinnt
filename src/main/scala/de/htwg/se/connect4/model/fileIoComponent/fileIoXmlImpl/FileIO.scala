@@ -2,7 +2,7 @@ package de.htwg.se.connect4.model.fileIoComponent.fileIoXmlImpl
 
 import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.State
 import de.htwg.se.connect4.model.boardComponent.BoardInterface
-import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.Color
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{BoardSizeStrategy, Color}
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.Color.Color
 import de.htwg.se.connect4.model.fileIoComponent.FileIoInterface
 import de.htwg.se.connect4.model.playerComponent.Player
@@ -15,12 +15,13 @@ class FileIO extends FileIoInterface {
   override def load: (BoardInterface, State) = {
     var board: BoardInterface = null
     val file = scala.xml.XML.loadFile("board.xml")
-    /*val rowAttr = file \\ "game"  \\ "board" \ "@row"
+    val rowAttr = file \\ "game"  \\ "board" \ "@row"
     val colAttr = file \\ "game" \\ "board" \  "@col"
 
-    val rows = rowAttr.text.toInt
-    val cols = colAttr.text.toInt*/
+    val sizeOfRows = rowAttr.text.toInt
+    val sizeOfCols = colAttr.text.toInt
 
+    board = BoardSizeStrategy.execute(sizeOfRows, sizeOfCols)
 
     val cellNodes = file \\ "cell"
     for (cell <- cellNodes) {
@@ -32,15 +33,14 @@ class FileIO extends FileIoInterface {
       board = board.set(row, col, color, isSet)
     }
 
-    val currentPlayerIndex: Int = (file \\ "currentPlayerIndex").text.toInt
-    val stateString: String = (file \\ "state").text
-    var layers: List[Player] = Nil
+    val currentPlayerIndex: Int = (file \\ "game" \\ "@currentPlayerIndex").text.toInt
+    val stateString: String = (file \\ "game" \\ "@stateString").text
     var players: List[Player] = Nil
 
-    val playerNodes = file \\ "players"
+    val playerNodes = (file \\ "player")
     for (player <- playerNodes) {
       val name: String = (player \ "@name").text
-      val colorAttr: String = (player \\ "@color").text
+      val colorAttr: String = (player \ "@color").text
       val color: Color = Color.toEnum(colorAttr)
       val piecesLeft: Int = (player \ "@piecesLeft").text.toInt
 
