@@ -67,7 +67,7 @@ case class Board @Inject() (cells: Matrix[Cell]) extends BoardInterface {
     while (rowCounter < sizeOfRows && colCounter < sizeOfCols) {
       val color = cell(rowCounter, colCounter).color
 
-      if (color.equals(Color.EMPTY) && color.equals(playerColor)) counter += 1 else counter = 0
+      if (color.equals(playerColor)) counter += 1 else counter = 0
       rowCounter += 1
       colCounter += 1
     }
@@ -88,7 +88,7 @@ case class Board @Inject() (cells: Matrix[Cell]) extends BoardInterface {
     while (colCounter < sizeOfCols && rowCounter >= 0) {
       val color = cell(rowCounter, colCounter).color
 
-      if (color.equals(Color.EMPTY) && color.equals(playerColor)) counter += 1 else counter = 0
+      if (color.equals(playerColor)) counter += 1 else counter = 0
       rowCounter -= 1
       colCounter += 1
     }

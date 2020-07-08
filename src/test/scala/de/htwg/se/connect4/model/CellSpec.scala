@@ -1,5 +1,6 @@
 package de.htwg.se.connect4.model
 
+import de.htwg.se.connect4.model.boardComponent.boardBaseImpl
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Cell, Color}
 import org.scalatest.{Matchers, WordSpec}
 
@@ -12,7 +13,7 @@ class CellSpec extends WordSpec with Matchers {
 
       "be initialized with false and no color" in {
         cell.isSet should be(false)
-        cell.color should be(None)
+        cell.color should be (Color.EMPTY)
       }
 
     }
@@ -22,14 +23,14 @@ class CellSpec extends WordSpec with Matchers {
 
       "be red if red player set a piece" in {
         redCell.isSet should be(true)
-        redCell.color should be(Some(Color.RED))
+        redCell.color should be(Color.RED)
       }
 
       val yellowCell = Cell(true, Color.YELLOW)
 
       "be initialized if yellow player set a piece" in {
         yellowCell.isSet should be(true)
-        yellowCell.color should be(Some(Color.YELLOW))
+        yellowCell.color should be(Color.YELLOW)
       }
 
     }

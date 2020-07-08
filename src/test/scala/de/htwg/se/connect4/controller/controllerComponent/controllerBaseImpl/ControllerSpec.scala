@@ -31,7 +31,7 @@ class ControllerSpec extends WordSpec with Matchers {
     "prevent cetting cell when already set" in {
       controller.set(1, 2)
 
-      controller.board.cell(1, 2).color shouldBe Some(Color.RED)
+      controller.board.cell(1, 2).color shouldBe Color.RED
     }
 
     "move to next player" in {
