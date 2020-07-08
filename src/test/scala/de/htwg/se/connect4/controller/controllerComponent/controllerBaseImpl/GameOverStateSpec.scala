@@ -52,6 +52,10 @@ class GameOverStateSpec extends WordSpec with Matchers {
     "return empty String" in {
       controller.handle("", board) should startWith ("")
     }
+
+    "return string representation" in {
+      controller.state.toString() should startWith ("GameOverState")
+    }
   }
 
 }

@@ -29,6 +29,10 @@ class PlayerWinStateSpec extends WordSpec with Matchers {
       controller.handle("", board) should startWith("")
     }
 
+    "return string representation" in {
+      controller.state.toString() should startWith("PlayerWinState")
+    }
+
 
   }
 

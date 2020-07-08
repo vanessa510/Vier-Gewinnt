@@ -24,6 +24,10 @@ class InGameStateSpec extends WordSpec with Matchers {
         controller.board.cell(1, 2).isSet shouldBe true
       }
 
+      "return string representation" in {
+        controller.state.toString() should startWith("InGameState")
+      }
+
     }
 
     "gets no integer input " should {
