@@ -168,8 +168,25 @@ class ControllerSpec extends WordSpec with Matchers {
       controller.cell(0,0) shouldBe a [Cell]
       controller.getBoard shouldBe a [Board]
       controller.getState shouldBe a [ControllerState]
+      controller.getCell(0,0).isSet shouldBe false
 
     }
    }
+
+  "Controller" should {
+    var board = new Board(2, 4, false)
+    val players: List[Player] = Player("test1", Color.RED, 1) :: Player("test2", Color.YELLOW, 0) :: Nil
+    val controller = new Controller(board, players)
+
+    "return saved" in {
+      controller.save should startWith ("saved")
+    }
+
+    "return loaded" in {
+      controller.load should startWith("loaded")
+    }
+
+
+  }
 
 }

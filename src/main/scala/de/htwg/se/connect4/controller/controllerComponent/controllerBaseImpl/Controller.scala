@@ -146,20 +146,24 @@ class Controller @Inject()(var board: BoardInterface, var players: List[Player])
 
   override def load: String = {
 
-    val (newBoard, stateToGet) = fileIo.load
+    val (newBoard, loadedState) = fileIo.load
     board = newBoard
-    players = stateToGet.players
-    currentPlayerIndex = stateToGet.currentPlayerIndex
+    players = loadedState.players
+    currentPlayerIndex = loadedState.currentPlayerIndex
 
-    stateToGet.state match {
-      case "GameOverState" => state = GameOverState(this)
-      case "InitializationState" => state = InitializationState(this)
-      case "PlayerWinState" =>   PlayerWinState
-      case "InGameState" => InGameState(this)
-    }
+    getState(loadedState.state)
 
     notifyObservers
     "loaded"
+  }
+
+  def getState(stateString: String) = {
+    stateString match {
+      case "GameOverState" => state = GameOverState(this)
+      case "InitializationState" => state = InitializationState(this)
+      case "PlayerWinState" => PlayerWinState
+      case "InGameState" => InGameState(this)
+    }
   }
 }
 
