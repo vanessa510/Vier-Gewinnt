@@ -17,9 +17,14 @@ object Color extends Enumeration {
   }
 
 
-  implicit val colorReads = {
-    EnumRead.enumReads(Color)
+  implicit val colorReads = EnumRead.enumReads(Color)
 
+  def toEnum(string: String): Color = {
+    string match {
+      case "red" => Color.RED
+      case "yellow" => Color.YELLOW
+      case "empty" => Color.EMPTY
+    }
   }
 
 

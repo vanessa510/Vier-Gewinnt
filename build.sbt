@@ -14,5 +14,7 @@ libraryDependencies += "net.codingwell" %% "scala-guice" % "4.1.0"
 
 libraryDependencies += "com.typesafe.play" %% "play-json" % "2.6.6"
 
+libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "1.1.1"
+
 
 
