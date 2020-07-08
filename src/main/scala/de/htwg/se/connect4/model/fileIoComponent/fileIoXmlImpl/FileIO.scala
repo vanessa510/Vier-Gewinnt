@@ -15,8 +15,8 @@ class FileIO extends FileIoInterface {
   override def load: (BoardInterface, State) = {
     var board: BoardInterface = null
     val file = scala.xml.XML.loadFile("board.xml")
-    val rowAttr = file \\ "board" \ "@row"
-    val colAttr = file \\ "board" \ "@col"
+    val rowAttr = file \\ "game"  \\ "board" \ "@row"
+    val colAttr = file \\ "game" \\ "board" \  "@col"
 
     val rows = rowAttr.text.toInt
     val cols = colAttr.text.toInt
@@ -34,6 +34,7 @@ class FileIO extends FileIoInterface {
 
     val currentPlayerIndex: Int = (file \\ "currentPlayerIndex").text.toInt
     val stateString: String = (file \\ "state").text
+    var layers: List[Player] = Nil
     var players: List[Player] = Nil
 
     val playerNodes = file \\ "players"
@@ -54,33 +55,69 @@ class FileIO extends FileIoInterface {
 
   }
 
-  override def save(board: BoardInterface, state: State): Unit = saveString(board)
+  override def save(board: BoardInterface, state: State): Unit = saveString(board, state)
 
-  def saveString(board: BoardInterface): Unit = {
+  def saveString(board: BoardInterface, state: State): Unit = {
     import java.io._
-    val pw = new PrintWriter(new File("grid.xml"))
-    val prettyPrinter = new PrettyPrinter(120, 4)
-    val xml = prettyPrinter.format(boardToXml(board))
+    val pw = new PrintWriter(new File("board.xml"))
+    val prettyPrinter = new PrettyPrinter(200, 2)
+    val xml = prettyPrinter.format(boardToXml(board, state))
     pw.write(xml)
     pw.close
 
   }
 
-  def boardToXml(board: BoardInterface) = {
+  def boardToXml(board: BoardInterface, state: State) = {
+    <game>
+      <currentPlayerIndex>currentPlayerIndex =
+        {state.currentPlayerIndex}
+      </currentPlayerIndex>
+      <stateString>stateString =
+        {state.state}
+      </stateString>
 
-    <board>
-      {
-      for {
+      <players>
+        {for {
+        index <- state.players.indices
+
+      } yield playerToXml(state, index)}
+      </players>
+
+      <board>
+        row= {board.sizeOfRows}
+        cols ={board.sizeOfCols}
+
+        {for {
         row <- 0 until board.sizeOfRows
         col <- 0 until board.sizeOfCols
-      } yield cellToXml(board, row, col)
-      }
-    </board>
+      } yield {
+        cellToXml(board, row, col)
+      }}
+      </board>
+    </game>
+
+
   }
 
-  def cellToXml(board: BoardInterface, row: Int, col: Int): Unit = {
-    <cell row={ row.toString } col={ col.toString }  isSet={ board.cell(row, col).isSet.toString }>
-     color= { board.cell(row, col).color.toString }
+  def cellToXml(board: BoardInterface, row: Int, col: Int) = {
+    <cell row={row.toString} col={col.toString} isSet={board.cell(row, col).isSet.toString}>
+      color=
+      {board.cell(row, col).color.toString}
     </cell>
+  }
+
+  def playersToXml(state: State) = {
+
+  }
+
+  def playerToXml(state: State, i: Int) = {
+    <player>
+      name=
+      {state.players(i).playerName}
+      piecesLeft=
+      {state.players(i).piecesLeft}
+      color=
+      {state.players(i).color}
+    </player>
   }
 }
