@@ -15,11 +15,11 @@ class FileIO extends FileIoInterface {
   override def load: (BoardInterface, State) = {
     var board: BoardInterface = null
     val file = scala.xml.XML.loadFile("board.xml")
-    val rowAttr = file \\ "game"  \\ "board" \ "@row"
+    /*val rowAttr = file \\ "game"  \\ "board" \ "@row"
     val colAttr = file \\ "game" \\ "board" \  "@col"
 
     val rows = rowAttr.text.toInt
-    val cols = colAttr.text.toInt
+    val cols = colAttr.text.toInt*/
 
 
     val cellNodes = file \\ "cell"
@@ -69,11 +69,11 @@ class FileIO extends FileIoInterface {
 
   def boardToXml(board: BoardInterface, state: State) = {
     <game>
-      <currentPlayerIndex>currentPlayerIndex =
-        {state.currentPlayerIndex}
+      <currentPlayerIndex currentPlayerIndex =
+        {state.currentPlayerIndex.toString}>
       </currentPlayerIndex>
-      <stateString>stateString =
-        {state.state}
+      <stateString stateString =
+        {state.state.toString}>
       </stateString>
 
       <players>
@@ -83,16 +83,13 @@ class FileIO extends FileIoInterface {
       } yield playerToXml(state, index)}
       </players>
 
-      <board>
-        row= {board.sizeOfRows}
-        cols ={board.sizeOfCols}
-
-        {for {
-        row <- 0 until board.sizeOfRows
-        col <- 0 until board.sizeOfCols
-      } yield {
-        cellToXml(board, row, col)
-      }}
+      <board row={ board.sizeOfRows.toString } col = {board.sizeOfCols.toString} >
+        {
+        for {
+          row <- 0 until board.sizeOfRows
+          col <- 0 until board.sizeOfCols
+        } yield cellToXml(board, row, col)
+        }
       </board>
     </game>
 
@@ -100,24 +97,13 @@ class FileIO extends FileIoInterface {
   }
 
   def cellToXml(board: BoardInterface, row: Int, col: Int) = {
-    <cell row={row.toString} col={col.toString} isSet={board.cell(row, col).isSet.toString}>
-      color=
-      {board.cell(row, col).color.toString}
+    <cell row={row.toString} col={col.toString} isSet={board.cell(row, col).isSet.toString}
+      color={board.cell(row, col).color.toString}>
     </cell>
   }
 
-  def playersToXml(state: State) = {
-
-  }
-
   def playerToXml(state: State, i: Int) = {
-    <player>
-      name=
-      {state.players(i).playerName}
-      piecesLeft=
-      {state.players(i).piecesLeft}
-      color=
-      {state.players(i).color}
+    <player name={state.players(i).playerName.toString} piecesLeft={state.players(i).piecesLeft.toString} color={state.players(i).color.toString}>
     </player>
   }
 }
