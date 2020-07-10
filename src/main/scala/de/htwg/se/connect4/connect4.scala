@@ -1,11 +1,9 @@
+package de.htwg.se.connect4
+
 import com.google.inject.Guice
-import de.htwg.se.connect4.Connect4Module
 import de.htwg.se.connect4.aview.Tui
-import de.htwg.se.connect4.aview.gui.SwingGui
 import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
 import de.htwg.se.connect4.model.boardComponent.BoardInterface
-
-import scala.io.StdIn.readLine
 
 object connect4 {
 
