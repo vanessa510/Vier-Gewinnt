@@ -14,7 +14,7 @@ object connect4 {
 
   val controller = injector.getInstance(classOf[ControllerInterface])
   val tui = new Tui(controller)
-  val gui = new SwingGui(controller)
+  //val gui = new SwingGui(controller)
 
   controller.notifyObservers
 
