@@ -11,7 +11,8 @@ object EnumRead {
           JsSuccess(enum.withName(s))
 
         } catch {
-          case _: NoSuchElementException => JsError(s"Enumeration expected of type: '${enum.getClass}', but it does not appear to contain the value: '$s'")
+          case _: NoSuchElementException =>
+            JsError(s"Enumeration expected of type: '${enum.getClass}', but it does not appear to contain the value: '$s'")
         }
       }
       case _ => JsError("String value expected")
