@@ -10,7 +10,8 @@ cell.isSet
 
 case class Matrix[Cell](rows:Vector[Vector[Cell]]) {
 
-  def this(sizeOfRows:Int, sizeOfCol:Int, cell: Cell) = this(Vector.tabulate(sizeOfRows, sizeOfCol){(row, col) => cell})
+  def this(sizeOfRows:Int, sizeOfCol:Int, cell: Cell) =
+    this(Vector.tabulate(sizeOfRows, sizeOfCol){(row, col) => cell})
 
   def sizeOfRows:Int = rows.size
 
@@ -18,12 +19,14 @@ case class Matrix[Cell](rows:Vector[Vector[Cell]]) {
 
   def cell(row:Int, col:Int):Cell = rows(row)(col)
 
-  def replaceCell(row:Int, col:Int, cell:Cell): Matrix[Cell] = copy(rows.updated(row, rows(row).updated(col, cell)))
+  def replaceCell(row:Int, col:Int, cell:Cell): Matrix[Cell] =
+    copy(rows.updated(row, rows(row).updated(col, cell)))
 
 }
 
 case class Board(cells: Matrix[Cell]) {
-  def this(sizeOfRows: Int, sizeOfCol: Int, isSet: Boolean) = this(new Matrix[Cell](sizeOfRows, sizeOfCol, Cell(isSet)))
+  def this(sizeOfRows: Int, sizeOfCol: Int, isSet: Boolean) =
+    this(new Matrix[Cell](sizeOfRows, sizeOfCol, Cell(isSet)))
 
   def size: Int = cells.sizeOfRows
 
@@ -44,7 +47,8 @@ case class Board(cells: Matrix[Cell]) {
     } {
 
       if (col == 0) returnString += "\n" + oneLine + "\n"
-      if (matrix.cell(row, col).isSet) returnString += " y |" else returnString +=  " - |"
+      if (matrix.cell(row, col).isSet) returnString += " y |"
+      else returnString +=  " - |"
 
     }
 
@@ -55,7 +59,8 @@ case class Board(cells: Matrix[Cell]) {
   val field = new Board(2, 3, false)
   field.size
   field.cells.rows(0).length
-  val newField = Board (field.cells.replaceCell(1, 1, Cell(true, Optional.of("red"))))
+  val newField =
+    Board (field.cells.replaceCell(1, 1, Cell(true, Optional.of("red"))))
   newField.cell(1,1)
   newField.getBoardAsString(newField.cells)
 
