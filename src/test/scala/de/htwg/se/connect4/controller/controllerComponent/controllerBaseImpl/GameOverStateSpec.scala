@@ -4,9 +4,11 @@ import de.htwg.se.connect4.aview.Tui
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Color}
 import de.htwg.se.connect4.model.playerComponent
 import de.htwg.se.connect4.model.playerComponent.Player
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class GameOverStateSpec extends WordSpec with Matchers {
+
+class GameOverStateSpec extends AnyWordSpec with Matchers {
   "A Game Over State" should {
 
     val board = new Board(2, 3, false)

@@ -1,9 +1,10 @@
 package de.htwg.se.connect4.model
 
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Cell, Color, Matrix}
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class MatrixSpec extends WordSpec with Matchers {
+class MatrixSpec extends AnyWordSpec with Matchers {
 
   "A Matrix is part of the game board. A Matrix" when {
 
