@@ -4,9 +4,13 @@ import de.htwg.se.connect4.controller.controllerComponent.controllerBaseImpl.{Co
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Color}
 import de.htwg.se.connect4.model.playerComponent
 import de.htwg.se.connect4.model.playerComponent.Player
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class TuiSpec extends WordSpec with Matchers {
+
+
+
+class TuiSpec extends AnyWordSpec with Matchers {
 
 
   "A Tui represents the game with text. A Tui" when {

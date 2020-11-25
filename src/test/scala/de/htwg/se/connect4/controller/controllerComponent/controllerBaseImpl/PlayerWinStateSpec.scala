@@ -4,9 +4,11 @@ import de.htwg.se.connect4.aview.Tui
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Color}
 import de.htwg.se.connect4.model.playerComponent
 import de.htwg.se.connect4.model.playerComponent.Player
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class PlayerWinStateSpec extends WordSpec with Matchers {
+
+class PlayerWinStateSpec extends AnyWordSpec with Matchers {
 
   "A Player Win State" when {
     val board = new Board(2, 3, false)

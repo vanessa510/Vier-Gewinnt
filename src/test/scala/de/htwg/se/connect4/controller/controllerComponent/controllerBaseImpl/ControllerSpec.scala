@@ -4,9 +4,10 @@ import de.htwg.se.connect4.model.boardComponent.boardBaseImpl
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Cell, Color}
 import de.htwg.se.connect4.model.playerComponent
 import de.htwg.se.connect4.model.playerComponent.Player
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.wordspec._
+import org.scalatest.matchers.should.Matchers
 
-class ControllerSpec extends WordSpec with Matchers {
+class ControllerSpec extends AnyWordSpec with Matchers {
 
   "A Controller is managing the game. A controller" should {
 

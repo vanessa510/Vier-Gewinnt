@@ -18,6 +18,8 @@ trait ControllerInterface extends Observable {
 
   def load: String
 
+  def setCol(col : Int) : String
+
   def set(row: Int, col: Int): String
 
   def triggerNextStateAndEvaluateInput: Unit

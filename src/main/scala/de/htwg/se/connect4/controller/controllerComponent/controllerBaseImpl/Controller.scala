@@ -30,6 +30,23 @@ class Controller @Inject()(var board: BoardInterface, var players: List[Player])
 
   def getWelcomeString: String = "Welcome to connect 4. Please Enter your names."
 
+  def setCol(col : Int) : String = {
+    var idx = board.sizeOfRows-1
+    var found = false;
+    while(!found && idx >= 0){
+      found = !board.cell(idx,col).isSet
+      idx -= 1
+    }
+    if(found) {
+     return set(idx+1,col)
+    }
+    else {
+      notifyObservers
+      "Cell is already set. Please chose different one."
+    }
+  }
+
+
   def set(row: Int, col: Int): String = {
     if (board.cell(row, col).isSet) {
       notifyObservers
