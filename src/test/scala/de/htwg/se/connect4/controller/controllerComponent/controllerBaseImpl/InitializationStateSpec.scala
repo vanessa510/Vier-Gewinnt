@@ -4,9 +4,11 @@ import de.htwg.se.connect4.aview.Tui
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Color}
 import de.htwg.se.connect4.model.playerComponent
 import de.htwg.se.connect4.model.playerComponent.Player
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class InitializationStateSpec extends WordSpec with Matchers {
+
+class InitializationStateSpec extends AnyWordSpec with Matchers {
 
   "An Initialization state" when {
     val board = new Board(2, 3, false)

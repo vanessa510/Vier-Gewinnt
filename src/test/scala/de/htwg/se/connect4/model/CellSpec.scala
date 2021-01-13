@@ -2,9 +2,11 @@ package de.htwg.se.connect4.model
 
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Cell, Color}
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class CellSpec extends WordSpec with Matchers {
+
+class CellSpec extends AnyWordSpec with Matchers {
 
   "A Cell represents the place for a gaming piece" when {
 

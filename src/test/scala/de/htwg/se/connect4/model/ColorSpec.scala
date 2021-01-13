@@ -1,9 +1,11 @@
 package de.htwg.se.connect4.model
 
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.Color
-import org.scalatest.{Matchers, WordSpec}
 
-class ColorSpec extends WordSpec with Matchers {
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
+
+class ColorSpec extends AnyWordSpec with Matchers {
 
   "A Color" when {
 

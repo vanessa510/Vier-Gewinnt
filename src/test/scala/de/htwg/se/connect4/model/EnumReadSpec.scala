@@ -2,10 +2,12 @@ package de.htwg.se.connect4.model
 
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.Color
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.Color.Color
-import org.scalatest.{Matchers, WordSpec}
-import play.api.libs.json.{JsResultException, JsValue, Json}
 
-class EnumReadSpec extends WordSpec with Matchers {
+import play.api.libs.json.{JsResultException, JsValue, Json}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
+
+class EnumReadSpec extends AnyWordSpec with Matchers {
 
   "An Enum Read" when {
 

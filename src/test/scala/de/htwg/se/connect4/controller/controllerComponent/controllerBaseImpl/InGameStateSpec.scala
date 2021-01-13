@@ -4,9 +4,10 @@ import de.htwg.se.connect4.aview.Tui
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Color}
 import de.htwg.se.connect4.model.playerComponent
 import de.htwg.se.connect4.model.playerComponent.Player
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.matchers.should.Matchers
 
-class InGameStateSpec extends WordSpec with Matchers {
+class InGameStateSpec extends AnyWordSpec with Matchers {
 
   "An InGameState" when {
 

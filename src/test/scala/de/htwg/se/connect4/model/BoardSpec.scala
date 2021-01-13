@@ -3,10 +3,12 @@ package de.htwg.se.connect4.model
 
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Board, Cell, Color, Matrix}
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
 
-class BoardSpec extends WordSpec with Matchers {
+
+class BoardSpec extends AnyWordSpec with Matchers {
   "A Board is the Gamefield of Connect4. A Board" when {
 
     "to be constructed" should {

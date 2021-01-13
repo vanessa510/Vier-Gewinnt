@@ -5,6 +5,7 @@ import com.google.inject.Inject
 import de.htwg.se.connect4.model.boardComponent.BoardInterface
 
 import scala.collection.mutable.ListBuffer
+import scala.util.control.Breaks.{break, breakable}
 
 
 case class Board @Inject() (cells: Matrix[Cell]) extends BoardInterface {
@@ -29,9 +30,13 @@ case class Board @Inject() (cells: Matrix[Cell]) extends BoardInterface {
       pieces += cell(row, col).color
     }
     var counter = 0
-    for (elem <- pieces) {
-      if (elem.equals(color)) counter += 1 else counter = 0
+    breakable {
+      for (elem <- pieces) {
+        if (elem.equals(color)) counter += 1 else counter = 0
+        if(counter >= 4) break
+      }
     }
+
 
     if (counter >= 4) true else false
   }
@@ -42,9 +47,13 @@ case class Board @Inject() (cells: Matrix[Cell]) extends BoardInterface {
       pieces += cell(row, col).color
     }
     var counter = 0
-    for (elem <- pieces) {
-      if (elem.equals(color)) counter += 1 else counter = 0
+    breakable {
+      for (elem <- pieces) {
+        if (elem.equals(color)) counter += 1 else counter = 0
+        if(counter >= 4) break
+      }
     }
+
 
     if (counter >= 4) true else false
 
@@ -64,7 +73,7 @@ case class Board @Inject() (cells: Matrix[Cell]) extends BoardInterface {
     }
 
     var counter = 0
-    while (rowCounter < sizeOfRows && colCounter < sizeOfCols) {
+    while (rowCounter < sizeOfRows && colCounter < sizeOfCols && counter < 4) {
       val color = cell(rowCounter, colCounter).color
 
       if (color.equals(playerColor)) counter += 1 else counter = 0
@@ -85,7 +94,7 @@ case class Board @Inject() (cells: Matrix[Cell]) extends BoardInterface {
     }
 
     var counter = 0
-    while (colCounter < sizeOfCols && rowCounter >= 0) {
+    while (colCounter < sizeOfCols && rowCounter >= 0 && counter <4) {
       val color = cell(rowCounter, colCounter).color
 
       if (color.equals(playerColor)) counter += 1 else counter = 0

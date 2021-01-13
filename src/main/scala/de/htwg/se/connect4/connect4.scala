@@ -6,6 +6,8 @@ import de.htwg.se.connect4.aview.gui.SwingGui
 import de.htwg.se.connect4.controller.controllerComponent.ControllerInterface
 import de.htwg.se.connect4.model.boardComponent.BoardInterface
 
+import scala.io.StdIn.readLine
+
 object connect4 {
 
   val injector = Guice.createInjector(new Connect4Module)

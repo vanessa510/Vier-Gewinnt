@@ -2,9 +2,10 @@ package de.htwg.se.connect4.model
 
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl
 import de.htwg.se.connect4.model.boardComponent.boardBaseImpl.{Cell, Color}
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class SetSpec extends WordSpec with Matchers {
+class SetSpec extends AnyWordSpec with Matchers {
 
   "A set represents a row or column of cells" when {
 
